@@ -1,0 +1,118 @@
+Attack;Year;Records;Organisation Type;Country;Attack Vector
+Baku-Tbilisi-Ceyhan Pipeline explosion;2008;unknown;Petroleum;Turkey;poor security
+Iranian Oil Terminal offline after malware attack;2012;unknown;Petroleum;Iran;malware attack
+German Steel Mill Cyber Attack;2014;unknown;Metals;Germany;social engineering
+Russian-Based Dragonfly Group Attacks Energy Industry;2014;unknown;Power and Utilities;United States;phishing
+U-2 spy plane caused widespread shutdown of U.S. flights: report;2014;unknown;Transportation;United States;poor security
+After Godzilla Attack! U.S. warns about traffic-sign hackers;2014;unknown;Transportation;United States;unknown
+Public utility compromised after brute-force hack attack says Homeland Security;2014;unknown;Power and Utilities;United States;poor security
+Broadcast Storm Shuts Down DCS Consoles;1997;unknown;Pulp and Paper;Canada;poor security
+PLC Password Change;1988;unknown;Pulp and Paper;Canada;insider threat
+Duplicate IP Address Prevents Machine Startup;1996;unknown;Pulp and Paper;Canada;poor security
+Whitehat Takeover of DCS Consoles;2002;unknown;Petroleum;Canada;hacked
+Hackers Target Cal - ISO System;2001;unknown;Power and Utilities;United States;hacked
+Electronic Sabatoge of Venezuela Oil Operations;2002;unknown;Petroleum;Venezuela;hacked
+Nimda Impact on Manufacturing System;2001;unknown;Food & Beverage;United States;insider threat
+CIA Trojan Causes Siberian Gas Pipeline Explosion;1982;unknown;Petroleum;Russian Federation;malware attack
+Hacker Takes Over Russian Gas System;1999;unknown;Petroleum;Russian Federation;malware attack
+Iranian Hackers Attempt to Disrupt Israel Power System;2003;unknown;Power and Utilities;Israel;hacked
+Virus Impacts Paper Machine HMI;2004;unknown;Pulp and Paper;United States;unknown
+IP Address Change Shuts Down Chemical Plant;2002;unknown;Chemical;United States;hacked
+Hackers Attack NZ & Aust for Joining Gulf Taskforce;1998;unknown;Power and Utilities;New Zealand;poor security
+Theft of Relay Programming Laptops;2004;unknown;Power and Utilities;United States;lost or stolen device
+SCADA/EMS Alarm System Failure Contributes to Blackout;2003;unknown;Power and Utilities;United States;poor security
+Reverse Osmosis System PLC Attacked;2002;unknown;Electronic Manufacturing;United States;hacked
+DoS Attack Shuts Down Port of Houston;2001;unknown;Transportation;United States;poor security
+Navy Radar Shuts Down SCADA Systems;1999;unknown;Water/Waste Water;United States;poor security
+Hackers Crash Controller via Web Service;2002;unknown;Electronic Manufacturing;United Kingdom;hacked
+Anti-Virus Software Prevents Boiler Safety Shutdown;2001;unknown;Petroleum;United States;poor security
+Telco Shuts Off Critical SCADA Comms;2003;unknown;Petroleum;Canada;poor security
+Slammer Infected Laptop Shuts Down DCS;2003;unknown;Petroleum;United Kingdom;hacked
+Blaster Impacts HMI Stations in Smelter;2003;unknown;Metals;Canada;hacked
+Hacker Changes Chemical Plant Set Points via Modem;2002;unknown;Chemical;Canada;poor security
+Air Traffic Radar System in Palmdale California Crashes;2004;unknown;Transportation;United States;hacked
+Utility SCADA System Attacked;2001;unknown;Power and Utilities;United States;hacked
+Virus Attacks a European Utility;2003;unknown;Power and Utilities;Europe;poor security
+UK Maritime and Coastguard Agency Hit by Sasser Worm;2004;unknown;Other;United Kingdom;malware attack
+Sasser Worm Hits British Airways;2004;unknown;Transportation;United Kingdom;malware attack
+Nachi Worm on Advanced Process Control Servers;2003;unknown;Chemical;France;malware attack
+Oil Company SCADA System Impacted by RF Interference;1989;unknown;Petroleum;United States;poor security
+Blockage of 12 Out Of 13 PLC Systems;2004;unknown;Other;Switzerland;hacked
+Weekly Connection Loss to PLCs;2004;unknown;Other;Switzerland;unknown
+Instability of the OSI Layer-2 Bridging;2004;unknown;Other;Switzerland;poor security
+Change of Network Service Stopped OSI Layer-2 Communication;2003;unknown;Other;Switzerland;poor security
+Union Carbide Chemical Leak West Virginia;1985;unknown;Chemical;United States;poor security
+Virus Infection of Operator Training Simulator;2002;unknown;Petroleum;Canada;malware attack
+Accidental Remote Uploading of PLC Program;2000;unknown;Petroleum;Canada;poor security
+Y2K Test Crashes Reactor Computer;1999;unknown;Power and Utilities;United States;unknown
+SCADA Attack on Production Plant of Global Chemical Company;2001;unknown;Chemical;Unknown;hacked
+Electronic Sabotage of Petroleum Company’s Gas Processing Plant;2001;unknown;Petroleum;United States;hacked
+Computer Error at Sellafield Nuclear Plant in UK;1991;unknown;Power and Utilities;United Kingdom;poor security
+Olympic Pipeline Rupture and Subsequent Fire;1999;unknown;Petroleum;United States;unknown
+Oakland Air-Traffic Control Center Outage;1995;unknown;Transportation;United States;poor security
+Two Viruses Cause Near Miss With Process Control Networks (PCN) in Africa;2004;unknown;Petroleum;Chad;malware attack
+Korean Air Line B747 CFIT Accident in Guam;1997;unknown;Transportation;Guam;unknown
+London August 2003 Power Blackout;2003;unknown;Power and Utilities;United Kingdom;poor security
+Ethernet Network Storm Zaps Multiple PLC5’s;2003;unknown;Pharmaceutical;United States;poor security
+UK Air Traffic Control Computers Fail;2002;unknown;Transportation;United Kingdom;poor security
+Errant AntiVirus Definition Brings Down Railway LANs;2005;unknown;Transportation;Japan;poro security
+SCADA Workstation Infected by W32/Korgo Worm;2004;unknown;Power and Utilities;United States;malware attack
+Slammer Impacts Offshore Platforms;2003;unknown;Petroleum;United States;malware attack
+SQL Slammer Impacts Drill Site;2003;unknown;Petroleum;United States;malware attack
+Contractor Accidentally Connects to Remote PLC;2003;unknown;Chemical;United States;insider threat
+Welchia Worm Infects Automation Network;2003;unknown;Petroleum;United States;malware attack
+Paper Company Control System Hit By Blaster;2003;unknown;Pulp and Paper;United States;malware attack
+Trojan Backdoor on Water SCADA System;2004;unknown;Water/Waste Water;Canada;malware attack
+PLC Crash In Food Plant;2005;unknown;Food & Beverage;United States;unknown
+Single PLC Lost For Unknown Reason;2003;unknown;General Manufacturing;United States;unknown
+Runaway Remote Control Train;2002;unknown;Transportation;United States;poor security
+Offsite Fiber Cable Cut Causes Loss of Communications;2005;unknown;Power and Utilities;United States;poor security
+Computer Error Grounds Japanese Flights;2003;unknown;Transportation;Japan;poor security
+Software Bug Blamed in Radioactive Spill;2002;unknown;Mining;Australia;hacked
+Computer Flaw Makes Water Undrinkable;1998;unknown;Water/Waste Water;United States;malware attack
+Code Red Worm Defaces Automation Web Pages;2001;unknown;Petroleum;United States;malware attack
+Sasser Worm Infection in Process Control System.;2004;unknown;Petroleum;United Kingdom;malware attack
+Worm attack on Drilling Control system;2004;unknown;Petroleum;United Kingdom;malware attack
+Ping Sweep Caused DOS on PCN Firewall;2005;unknown;Petroleum;United Kingdom;hacked
+Sasser Worm Causes Loss of View in Chemicals Plant;2004;unknown;Chemical;United States;malware attack
+Infected New HMI Infects Chemical Plant DCS;2003;unknown;Chemical;Europe;poor security
+MUMU Infection of Leak Detection System;2003;unknown;Petroleum;United Kingdom;malware attack
+MUMU Infection of Fiscal Metering System;2003;unknown;Petroleum;United Kingdom;malware attack
+MUMU Infection of Operator Training System;2003;unknown;Petroleum;United States;malware attack
+Blaster Worm Infects Chemical Plant;2003;unknown;Chemical;United Kingdom;malware attack
+Virus/Worm Infects New Oil Platform;2003;unknown;Petroleum;Norway;malware attack
+Blaster Infects Onshore Oil Production Control System;2003;unknown;Petroleum;United States;malware attack
+Backdoor Trojan Attack on Manufacturing Lab;2004;unknown;Electronic Manufacturing;Unknown;malware attack
+11 Ethernet PLCs Fail At Once;2003;unknown;Metals;United States;unknown
+Ethernet Storm Wipes PLC’s Processor Memory;2000;unknown;Unknown;Australia;poor security
+Malformed Packet Causes PLC Crash;2002;unknown;Unknown;United States;hacked
+E-Tag Incident;2005;unknown;Power and Utilities;United States;hacked
+Unauthorized Connection Permits Sasser Infection;2004;unknown;Unknown;Unknown;malware attack
+Korgo Worm Infects 20 Workstations;2004;unknown;Unknown;Unknown;malware attack
+DCS Console Reprogramming Causes Gateway Fault;1998;unknown;Pulp and Paper;Canada;poor security
+Maroochy Shire Sewage Spill;2000;unknown;Water/Waste Water;Australia;insider threat
+PLCs Crashed by IT Audit;1995;unknown;Food & Beverage;United States;hacked
+Hackers gain unauthorized access to a modular hybrid controller;2002;unknown;Unknown;Unknown;poor security
+Malware Shuts Down Milling Factory;2010;unknown;General Manufacturing;Iran;malware attack
+Water Utility Hack Destroys Pump;2011;unknown;Water/Waste Water;United States;poor security
+Auto Manufacturer Hacked;2012;unknown;Automotive;United States;unknown
+Control System Infected with SQLslammer Worm;2003;unknown;Petroleum;Unknown;malware attack
+Spybot Infection;2004;unknown;Unknown;Unknown;malware attack
+Date Triggered Code Found on PLC;2003;unknown;Unknown;Unknown;hacked
+Omega Engineering Sabotage;1996;unknown;Electronic Manufacturing;United States;insider threat
+Virus Shuts Down AC Jazz Airline Flight Planning Computer;2003;unknown;Transportation;Canada;malware attack
+Nacchi Virus Infects Air Canada Check-In System;2003;unknown;Transportation;Canada;malware attack
+Ski Gondola Worker Shutdown Control System;2002;unknown;Transportation;United States;insider threat
+Slammer Impact on Ohio Nuclear Plant;2003;unknown;Power and Utilities;United States;malware attack
+Sobig Virus Strikes CSX Train Signalling System;2003;unknown;Transportation;United States;malware attack
+Power Industry Slammer #2;2003;unknown;Power and Utilities;United States;malware attack
+Power Industry Slammer #1;2003;unknown;Power and Utilities;United States;malware attack
+Worcester Air Traffic Communications System Hack;1997;unknown;Transportation;United States;hacked
+Salt River Project Hack;1994;unknown;Power and Utilities;United States;insider threat
+Signal problems cause train delays;2013;unknown;Transportation;United States;unknown
+Virus shuts down county highway department network;2013;unknown;Transportation;United States;malware attack
+Shamoon virus knocks out computers at Qatari gas firm RasGas;2012;unknown;Petroleum;Qatar;malware attack
+Process Control Network Infected with a Virus;2012;unknown;Petroleum;;malware attack
+Gas Company Virus Infection;2012;unknown;Petroleum;;malware attack
+Computer Virus Strikes Two Scottish Hospitals;2009;unknown;Other;United Kingdom;malware attack
+Computer Glitch Causes Roller Coaster Malfunction;2012;unknown;Other;United States;poor security

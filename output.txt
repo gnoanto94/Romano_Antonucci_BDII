@@ -1,0 +1,240 @@
+Hackers shut down alarms, cut off communications and super pressurized the crude oil in the line which resulted in an explosion.
+
+Iran has been forced to disconnect key oil facilities after suffering a malware attack. The computer virus is believed to have hit the internal computer systems at Iran&#8217;s oil ministry and its national oil company.
+
+Multiple attackers used an advanced social engineering attack to gain access to the company network and then worked their way onto the control system network.&nbsp; This resulted in an incident where a furnace could not be shut down in the regular way and the furnace was in an undefined condition which resulted in massive damage to the whole system.\xe2\x80\x9d
+
+Dragonfly a group that has been operating since at least 2011, first started by targeting defense and aviation companies in the U.S. and Canada. In 2013, the group moved their focus into the U.S. and European energy firms. Dragonfly gains entry through these methods:\n1. spear phishing emails delivering malware\n2. watering hole attacks that redirected visitors to energy industry-related websites hosting an exploit kit\n3. infecting legitimate software from three different ICS (industrial control systems) equipment manufacturers\nAs of now Dragonfly&#8217;s main motive seems to be cyber-espionage, with a likelihood of sabotage in the future.
+
+U-2 Spy plane caused computer glitch that lead to flight delays for several airport, but originated in LAX airspace.
+
+In May, signs on San Francisco&#8217;s Van Ness Ave were photographed flashing &#8220;Godzilla Attack! Turn Back&#8221;, this the first of many hacks done across the counrty to road signs.
+
+Hackers took advantage of a weak password security system at a public utility in the U.S. which has not been identified.
+
+The facility lost communications to the operator consoles on a steam plant DCS.&nbsp; The problem was believed to be caused by an incorrectly configured Windows 95 workstation in another mill area that generated high levels of broadcast packets.
+
+One of the first reported cases of plant floor &#8220;hacking&#8221; occurred in 1988 on an Allen-Bradley DH+, which was used by an angry worker to modify a different department&#8217;s PLC-5. The individual changed the password to something obscene, blocking all maintenance access to the system. It was believed that the employee found the original password on a post-it note.
+
+The mill had upgraded the profile controller on the #1 Paper Machine to a control system that used Ethernet and TCP/IP to communicate between the scanners and the main controller.&nbsp; It was also connected to the main mill network through a bridge so that profile information could be accessed by business applications.&nbsp; Some time after the installation, a network printer in another area of the mill was accidentally given the same IP address as the controller.&nbsp; Initially this did not cause difficulties, but shortly after a routine maintenance shutdown, the scanners started directing their data to the printer rather than to the controller.
+
+A simulated attack on a DCS during a security audit results in complete administrative takeover of the DCS operator consoles. A whitehat hacker with network access to the control LAN was to connect to selected DCS operator stations and obtain full administration privileges. This was accomplished through the vulnerabilties in the Windows platform and a number of Netbios fileshares that lacked proper password protection.
+
+Like the Salt River Project incident, this incident appears to be rampant with conflicting information. The best data we have is that a relatively inexperienced hacker was able to exploit two Solaris servers that were were part of a development network at Cal-ISO. These servers were supposed to be protected by a firewall, but in reality the servers were connected directly to the Internet. In addition, the Cal-ISO system administrators left the servers with all the software installed by the default setup, leaving numerous vulnerabilities open to exploitation. (#1)
+
+In December 2002, PDVSA, Venezuela&#8217;s state oil company became embroiled in a bitter strike that saw extensive sabatoge. According to a report in Oil Daily, Ali Rodriguez (the head of the oil company) stated:
+
+A  major manufacturing company that had implemented a complete anti-virus program for their IT environment.&nbsp; All client hardware was required to have a specific anti-virus program with up-to-date signature files.&nbsp; The IT servers were likewise protected.&nbsp; In addition access to the IT systems was restricted to approved gateways and firewalls.&nbsp; 
+
+Thomas Reed, senior US national security official, claims in his book &#8220;At The Abyss&#8221; that the United States allowed the USSR to steal pipeline control software from a Canadian company. This software included a Trojan Horse that caused a major explosion of the Trans-Siberian gas pipeline in June, 1982. The Trojan ran during a pressure test on the pipeline but doubled the usual pressure, causing the explosion. (#1, #2)
+
+According to a Associated Press news release,&nbsp; in 1999 a hacker took over control of a Russian gas system by penetrating the Gazprom (Russia&#8217;s state-run gas monopoly) SCADA system.(#1). National Petroleum Council report seems to confirm this, but it may just be repeating the AP story.
+
+We have little information on this incident. According the the press report, Iranian hackers attempted to break into the Israel Electric Corporation&#8217;s computers and disrupt the power supply in Israel several times in recent months. The Iranians, some of whom may be university students, tried to damage the computer infrastructures operating Israel&#8217;s power stations. They sent viruses and attempted to overload the servers in a &#8220;denial of service&#8221; attack.
+
+A virus infects a PC running HMI software for controlling the operation of an manaufacturing press. The virus introduced by a contractor accessing the HMI for maintence via a remote dialup line.
+
+On March 4, 2002, the control room operator&#8217;s LAN computer was restarted with a changed IP address.&nbsp; The IP address duplicated the address assigned to an analyzer computer used for continuous emissions monitoring.&nbsp; The analyzer computer locked-up as a result of the network error message due to duplicate IP addresses.&nbsp; 
+
+The following FICTITIOUS news paper article opened Parliament of Australian Research Paper 18 1997-98: \n================================================\nHackers Attack NZ &amp; Aust for Joining Gulf Taskforce
+
+SUBJ:&nbsp; COMPUTER THEFT\nFrom:&nbsp; ESISAC\nDate:&nbsp; 15 March 2004\nIncident Report:\nOn or about the morning of Tuesday, March 2, 2004 person(s) yet unknown broke into offices located at (xxx location) and stole two laptop computers that were programmed to perform station relay testing. These two laptops contained the various relay vendor softwares. These relay softwares are common industry wide in North America. The software is also readily available from relay vendors. 
+
+According to the U.S.-Canada Power System Outage Task Force Report, a significant contributing factor to the August 14th blackout was the failure of the First Energy (FE) Energy Management System (EMS) Alarm system and the operators unawareness of this critical failure. The details from the report are as follows:
+
+A PLC operating a reverse osmosis system for water purification in a semiconductor manufacturing plant was attacked and disabled by unknown Internet hackers. The PLC was improperly protected as it was connected to a LAN directly accessable to the Internet
+
+Aaron Caffrey, 19, was accused of bringing computers to a standstill at the port of Houston in Texas - but was found not guilty by a jury on October 17, 2003. This was despite both the prosecution and defence agreeing that Caffrey&#8217;s machine was responsible for launching the attack, that a list of 11,608 IP addresses of vulnerable servers was found on his hard drive, and the discovery of a malicious script on his system signed by someone called &#8220;Aaron&#8221;.&nbsp; An investigation by US authorities traced the attack back to a computer at Caffrey&#8217;s home in Shaftesbury, Dorset. Investigators found a copy of the attack script on the computer.
+
+In November 1999, the US Navy was conducting exercises off San Diego during which two commercial spectrum users experienced severe electro mangnetic interference (EMI) to their Supervisory Control and Data Aquistion (SCADA) wireless networks operating at approximately 928.5 MHZ.
+
+There were 2 types of incidents ocurring at the same location in the same time frame:\n(1)&nbsp; Hackers opened connections with our device , sent messages of unknown nature, then stopped communicating without closing the connection.&nbsp; This exposed a bug in the control product.&nbsp; After timing out the connection, the connection was left open.&nbsp; After repeated attacks, all connections were consumed leaving the ethernet port unavailable for legitimate users.\n(2)&nbsp; Hackers sent a WEB page to the device containing some java script and the text: &#8221; Hello! Welcome to http://worm.com Hacked by Chinese&#8221;.&nbsp; This exposed a bug in TCP/IP stack that caused invalid data access abort in the CPU.&nbsp; This results in the controller going through a reset, which drives all outputs to their off state.
+
+A TUV approved boiler safety protection system used Microsoft Excel on a PC workstation for programming. This workstation also had Norton anti-virus software running. The AV software prevented the proper communications between the PC and the protection system.
+
+Staff working for a telecommunications provider accidentally shut a critical circuit for communications between the SCADA operations centre and field stations on a liquid pipeline.
+
+A corporate laptop user installed software, unaware that it included an unpatched version of msSQL. Sometime later the user connected PC to the Internet (in violation of  company policy) to access email via an ISP. SQLslammer infected the internet connected machine. The user then brought the infected machine into the office and connected to the network, causing a small outbreak of the SQLslammer worm within the corporate network. 
+
+HMIs process LAN infected with Blaster Worm.
+
+Operators noticed set points being changed caused by a dialup modem that was continuously plugin and active.
+
+Zipser&#8217;s talk on water management explained various remote telemetry and management systems and their interconnects. Packet radio and PSTN are the most common methods, since cabling is expensive but other methods are on their way. (#1)
+
+A computer glitch, that was discovered more than a year earlier, caused  the backup system to fail on the FAA computer. This caused a 3 hour shutdown of radar systems at the Los Angeles Air Route Traffic Control Center in Palmdale California.\nThe Voice Switching and Control System (VSCS), originally on Linux, upgraded about a year ago to Dell computers using Microsoft software. The Microsoft software contained an internal clock designed to shut the system down after 49.7 days to prevent it from becoming overloaded with data. Analysts said a shutdown mechanism is preferable to allowing an overloaded system to keep running and potentially give controllers wrong information about flights.
+
+An electric power utility allowed a contracted vendor to establish a VPN connection. Neither took adequate steps to ensure proper access protection thinking that the other had.&nbsp; The connection was originally intended to have miminal exposure to the internet when in fact it had significant exposure.&nbsp; A threat agent exploited this vunerability allowing penetration of the SCADA system. (#2)
+
+A European utility reported that a virus attacked their Distribution SCADA system and this resulted in partial unavailability of the system functions. The utility reported they lost complete view of numerous distribution substations (for 3 days) by the operators in the control center. (#2)
+
+The Sasser bug affected coastguard logging operations but left its command and control systems and lifesaving equipment unaffected. 
+
+Between 0815 and 0830 BST on May 3, 2004, the Sasser worm infected the systems controlling the check-in, baggage handling and boarding at British Airways and caused the lost of use of around half its check-in desk computers at Heathrow&#8217;s Terminal Four.
+
+Staff noticed that the Advanced Process Controls (APC) Servers were getting slower and slower. Investigators found Nachi virus on 8 APCs (running Windows 2000) and disconnected these servers from production network for 5 hours.&nbsp; The virus was not detected on the Honeywell DCS stations (running Windows NT).
+
+In 1989 a SCADA sytem was being prepared for an oil company in Houston Texas. All the remote telemetry units were communicating with the master station computer via low power Johnson radios. The dummy loads on all of the antennae were used to cut down the range of the transmissions, (this caused havoc with the SWR&#8217;s and other equipment but the transceivers could be adjusted to get decent communications most of the time). Sporadically there would be bursts of errors for seemingly no reason. Using data analysers, junk could be seen on the frequency but could not be identified. 
+
+Two out of the 13 PLCs of the control system for the plant lost communications, with 10 PLCs more following in the next 30 minutes after the start of the incident. The corresponding modules (Siemens CP443-1 IT) were completely blocked, such that only a power-cycle was able to restart them. Since then, drop-outs of the same kind occur with a frequency of one PLC per week on average. 
+
+Occasional communication connection loss  to the PLC hindered the smooth running of the temperature monitoring system. The affected Siemens PLC (CP343-1) needed to be power cycled to restore its operation. The frequency has been about once a week without any regularity. Current suspect is a malformed packet accepted by the PLC, but this has never been confirmed.
+
+The current campus network infrastructure allows bridging of non-IP protocols (ISO, AIX,..) in parallel to the IP protocols by using dedicated virtual networks. For the ISO-protocol (OSI layer-2) a loop-less architecture is automatically configured by the corresponding switches, with one switch as master. The master is auto-negotiated by determining the switch with the highest (?) MAC address plus the highest internal &#8220;administrator level&#8221; (default is 128; master is 240; maximum is 255, but however, not compatible with all switch models). A watchdog signal issued every 45s verifies the proper functioning of the master. A change of master takes about 30s for all switches to adjust themselves to the new master configuration. No other traffic is exchanged during that time. 
+
+Prior to the incident, all PLCs of a control system were connected to one network service (i.e. one port of a router). Over this service, all were also able to use the OSI layer-2 (ISO) protocol for communication. Due to an exhaustion of all IP adresses in the subnet, the PLCs were regrouped into two services by connecting some of them to another port of the same router. Unfortunately, due to the fact that the ISO protocol was not bridged between the two services, the inter-communication between the PLCs of both groups ceased.
+
+The Institute facility leaked methylene chloride and aldicarb oxime, chemicals used to manufacture the pesticide Temik. The leak resulted from a computer program that was not yet programmed to recognize aldicarb oxime, compounded by human error when the operator misinterpreted the results of the program to imply the presence of methyl isocyanate (as in Bhopal). (#3)
+
+An operator training simulator was shipped to the site from the manufacturer in Houston. Prior to connection to the training DCS system, a standard system procedure check detected that the simulator was infected with a common computer virus. \nIt is unlikely that this virus would have had any direct impact on process operations as the training system was not going to be  connected to the real time process systems.
+
+A testing and programming facility for the petroleum company&#8217;s PLCs was setup by an engineering consultant in a remote city. An engineer who had just returned from the plant site used his laptop to connect to a PLC he believed was in his office. Instead the programming software connected to the last connected PLC, which was a live PLC at the plant site. Not realizing this, the engineer uploaded some trial software to the live PLC causing shutdown of a critical pipeline.
+
+The problem began just after lunch on Feb. 8, when a group of technicians tested a computer called the &#8220;Rodworth Minimizer.&#8221; The unit, which operates when the reactor is at low power, analyzes the position of &#8220;control rods&#8221; in the core and tells engineers which ones can&#8212;and cannot&#8212;be removed to balance power distribution.
+
+A disgruntled former employee was allegedly trying to disable the plant&#8217;s conveyor control, material storage, and chemical operating systems but was caught by a programmer &#8216;happening to notice unusual activity.&#8217; (#1)
+
+A gas processing plant operated by US petroleum company was hacked by a supplier, sabatoging the plant. (#2)
+
+A computer error at the vitrification plant resulted in two shielding doors being left open while highly radioactive material was still inside one chamber. (#2)
+
+At about 3:28 pm PDT, a 16 inch diameter steel pipeline ruptured and released about 237,000 gallons of gasoline into a creek that flowed through Whatcom Falls Park in Bellingham, WA. About 1 1/2 hours after the rupture, the gasoline ignited and burned approximately 1 1/2 miles along the creek. (#1)
+
+One of the three power sources was down for testing and maintenance at the time of the episode. The second power source failed unexpectedly. When technicians attempted to bring the third power source on-line, a faulty circuit board in Critical Power Panel failed, preventing power from being restored. (#1) The reason for these failures appears to be examples of problems with aged computers being used for air-traffic control. (#2)
+
+A serious near miss with the Honeywell (All Servers) Process Control Network occurred due to viruses entering and infecting may of the servers.&nbsp; The impact of this was server and communications failure through out the system from the wells and manifolds to the Floating Production Offshore Platform FPSO.&nbsp; The process control system was kept functional during the entire process of identification and resolution of the problem. Two worms
+
+Approaching Won Pat International Airport at night, Korean Air Lines Flight 801 impacted Nimitz Hill at 658ft, nearly 800ft below the minimum altitude at that point on the approach.
+
+The blackout was caused by a sequence of events. During this time period a scheduled maintenance shutdown was underway on one circuit of the line. Next, an alarm was received at the Electricity nation Control Centre, indicating that a transformer or its associated shunt reactor was in distress and could fail causing signigicant safety and environmental impacts. National Control contacted EDF Energy and asked them to disconnect the distribution system from the transformer, and switch.
+
+The company has an Ethernet network of 42 PLC5-E (5/20, 5/40) with redundant SCADA servers. PLCs are grouped, 3-5 together on coax 10base2 trunk/drop lines. These then go thru media converters to redundant Cisco switches with redundant fiber uplinks. The SCADA network and operator terminals are also on network, but not connected to the IS network or the outside world.
+
+Air-traffic control computers at the West Drayton control center, near Heathrow Airport, failed causing subsequent failures at the control center in Swanwick, Hampshire. Although the current failure is being attributed to &#8220;creaky&#8221; old systems that are unstable, the previous incident was attributed to a data-input error. (#1)
+
+An errant virus definition distributed by a anti-virus PC software company, Trend Micro, caused a large scale disruption the reservation division of railway company JR East. The software company&#8217;s automatic update site in the Philippines released a new virus definition file for its Virus Buster anti-virus software which was not adequately tested. This file was picked up by many users in Japan and abroad who either automatically or manually invoked the virus definition update function of the software. Windows XP SP2 and Windows 2003 server users with this software installed who updated their definition file AND rebooted the PC after the update (as suggested by the software) saw the CPU usage go up to 100% immediately after booting and could not control their systems.\non their PCs. (#1)
+
+The SCADA operator workstations got hit with the W32/Korgo worm virus. They were out of service starting at 14:33 and one terminal was back by 16:15. The first terminal was back by 18:23. These three terminals were on the corporate Intranet outside the SCADA firewall.
+
+The operator of the oil platforms was aware of the SQL vunerability and was actively pushing patches out to HMIs and database servers located on the platforms. In many cases the patches had been installed but the systems had not been rebooted due to a lack of qualified IT personnel on the platform. The company was in the process of helicoptering IT support staff to each of the platforms to supervise the reboot of the systems when the Slammer outbreak occurred.
+
+SQL Slammer virus entered the Corporate Intranet from the internet onto the Automation Segments/VLANS. This Denial of Service attack produced large enough quantities of traffic to use up resources on routers and switches. SQL sources on the Automation segment were 3 PSs running Bently Series One software and 2 PCs with the newer version of WonderWare that uses MS-SQL server. These 5 PCs represent only a small portion of the 70+ PCs on the Automation segments and were distributed at 3 different facilities. The business segments on site also had several MS-SQL server apps running. Although separated by VLANS, the Automation and Business traffice shared common switches and routers.
+
+A consulting engineer accidentally connected to and reprogramed an AB PLC several states away, via the corporate VPN/WAN. The engineer had previously been working on the affected PLC at the facility earlier in the week. Due to the PLC programming software design, when the engineer returned to his office he inadvertently reconnected to the last attached PLC (the one in the plant) all along thinking he was working on a test PLC in his office.
+
+Although internet access is generally denied from the Automation Network, the firewall was opened up to an Automation engineer to get an application update. In addition to getting the update, he also brought in the Welchia worm.
+
+Sappi Fine Paper was using Nessus and ISS Internet Scanner vulnerability testing software, as well as applying all patches to the systems but were still being hit by vulnerabilities. One machine had 40 vulnerabilities reported. The ISO knew they needed  to improve their security. When hit by Blaster worm the process control systems got infected. (#1)
+
+During a security audit of the SCADA system, a trojan backdoor was located on a human machine interface (HMI) computer.\nThis trojan contained a keylogger and reverse tunnel to an outside website. It is believed that the HMI was infected by an operator browsing external hot-mail websites as the trojan was mail based.
+
+Experienced an unexplained PLC-5 failure (solid red light). Complete battery lead reset was required to revive the PLC. Complete loss of DH+ and Ethernet connectivity.
+
+A routine audit of dial in Laptop&#8217;s was conducted. Staff were reluctant to bring in laptops regularly to allow patches and upgrades. Three virus types were found and were active hence the reason for not wanting to provide the laptops.
+
+A initial systems audit was conducted on all systems from HMI through to control electronics to establish system baseline status for each telemetry control system.\nWater Control system was performing poorly and database errors were suspected. System patches were not current and virus software version was out of date. The system crashed while checking performance issues. The Blaster virus was then discovered.
+
+A single PLC5 was lost while saving on-line edits using Al software. The potential culprits considered were:
+
+A runaway train plowed through NIPSCO&#8217;s Michigan City Generating Station hitting another locomotive before the second locomotive&#8217;s engineer narrowly jumped to safety. The train was operating with a remote-controlled system that was less than one year old. The unmanned estbound diesel-electric engine was pushing six coal cars and travelling at about 30 m.p.h. as it approached the coal drop-off area. The train did not respond to the radio controls and smashed through the enclosed thaw shed and coal rotary dumper. The impact sent the second train about 200 feet crashing through a fence and uprooting a bumper post intended to halt runaway trains.&nbsp; The train also ripped the track&#8217;s rails and dislodged the snow blade from the second train. (#1)
+
+There was a major fibre optics cut east of Russelville, Arkansas. The resident Nuclear Regulatory Commission person notified Emergency Planning that their contact with Arlington and headquarters was out, including commercial lines. Subsequent investigations revealed that ERCS, END and Health Physics Network lines were not functioning at Arkansas Nuclear One. The fibre optic cut was repaired and all phone circuits were operable by 1618 CST April 6, 2005. (#1)
+
+Flights were canceled and many others were delayed at airports across Japan after the nation&#8217;s main air control system broke down. The system has a backup, but both systems went down at the same time. (#1) The troubled flight data-processing system at Tokyo Air Traffic Control Center in Tokorozawa, Saitama Prefecture, automatically transmits flight information to airports across Japan.&nbsp; The system had some programs partially replaced in the system that exchanges flight plans with the Defense Agency, and it went down immediately after it was turned on following the replacement. (#2)
+
+A pipe burst at the uranium mine and in about four minutes 62,000 litres of radioactive liquid escaped from the pipe into an area around the uranium processing plant. The leak was an acid solution containing a mixture of chemicals including innocuous salts, as well as radioactive and toxic chemicals. The most significant of which was uranium. There had been a computer error and human error had caused the accident. A chain of events contributed to the accident.\n- Loss of power to the computer system that controls and monitors plant functions.\n- Backup power was cut off as a result of what appeared to be failure to follow correct procedure during maintenance. (This has been challenged by Heathgate Resources, the owners of the mine).\n- Incorrect computer programming resulted in pumps continuing to operate after power to the control system had been lost. - Pressure switches failed to operate and shut down the pumps. \n- Piping failed at well below its rated pressure. (#3)
+
+A computer glitch shut down the chlorination system and caused the chlorine content of the city water to drop below the safety threshold, affecting 40,000 residents.
+
+A network monitoring tool (PC running HPOpenView) used on the business side was also being used on the Automation Networks. This computer had two NIC cards installed, one on each network. This network monitoring PC provided a path from the internet, via the company business network onto the Automation network.
+
+A worm (Sasser) infected a number of HMIs on a process control network. Initial point of infection suspected as from an external network connected to the same firewall as the PCN. None of the HMIs were installed with AV software, and none had been patched. All were running on a Windows based OS. The firewall, although running an IDS service, did not have a fully secured rulebase, which allowed the infection to pass onto the PCN.
+
+A new HMI type machine on a drilling network was introduced without AV software by a third party drilling company. This machine was also not fully patched. This was against standard procedures. Other machines on the same network had not received the latest patch. The HMI was also infected with a worm which caused the control system to be infected by the worm. This led to loss of view of the drilling control network; however, operations were suspended at the time of the incident for modifications to the drilling asset. Therefore, impact to operations was negligible
+
+An open rulebase on a PCN firewall allowed a ping sweep from an external network onto the PCN to use up all available licenses on the PCN firewall. This meant the firewall denied connectivity to genuine process related traffic into the PCN.
+
+The Sasser worm infected the DCS of a major chemicals plant. The worm infection came through the firewall on port 445 which was needed for the PHD authentication connection. The worm caused loss of view and loss of control for the whole of the DCS control system for the entire plant for over 5 hours.
+
+A vendor/contractor built a new HMI on their own premises &amp; network and did not install all appropriate security patches. The HMI became infected with a worm (blaster?). The HMI was walked passed the PCN firewall and was connected to the PCN when it infected other machines on the DCS.
+
+A gas pipeline leak detection system became infected by the MUMU worm owing to a weak admin password. The infected machine was removed from the network for a few days but there was no operational impact.
+
+A fiscal metering leak system became infected by the MUMU worm owing to a weak admin password. The infected machine was removed from the network for a few days but there was no operational impact.
+
+The AV software detected a virus on the Operator Training Simulation system GUS stations. This training system was not behind a firewall. The worm was removed and the passwords hardened.
+
+A couple of HMIs became infected by the nachi worm. The worm entered the control system through a poorly configured firewall. The worm infection was discovered by the AV software. No production was lost. The worm was removed and the firewall rules were tightened.
+
+There were strong (but unconfirmed) rumors that a new platform Grane experienced production shutdown because of a virus attack hitting the ABB control system.
+
+This scada system that controls an onshore oil production system was infected by the blaster worm. This seemed to cause no impact to operations and was only noticed by IT security personnel who were trying to clear the corporate network of the worm infection.
+
+This incident describes a complex and wide reaching malware-based attack against the manufacturing lab systems of a major electronics manufacturer. The lab was a large integrated test and development facility with a significant number of Windows servers and development machines spread over several building sites. The attack was a backdoor trojan that was at the time a new and unknown variant. Whether this was a directed attack and the intent of the attack is not known.
+
+Around 11pm every PLC5 Ethernet controller in our facility lost its memory (11). Processors that were only on DH+ were fine. Furthermore, our GE PLC&#8217;s on the network were unaffected. To fix the problem we configured the Ethernet port via the serial port and then we downloaded new programs via Ethernet. All the batteries are good.
+
+The memory of most of our PLC5 processors was wiped and we found that it was related to the revision level of the processors. The blame was pointed at an Ethernet storm that the earlier rev. processors could not handle and wiped their memory. The Ethernet storm caused by a third party software package sending ethernet broadcast frames. We had our affected processors upgraded to Series E rev E.2 or Series D rev F.2 as well as upgrading the ethernet sidecars and no trouble since.
+
+There was some new security software that sent a malformed &#8220;ICMP redirect&#8221; packet to all the TCP/IP devices in the system. Older PLC-5E controllers have a firmware weakness that can make them fault if they receive this kind of packet from a misconfigured router or a security scanner.
+
+An individual logs into the electronic tagging (e-tag)&nbsp; system associated with a Purchasing-Selling Entity (PSE).&nbsp; They had legitimate access to a valid user name, password, and digital certificate of an active account, but this login was unauthorized and was made from an offsite computer not under the direct control of the PSE.&nbsp; The motive was to play a joke on the PSE scheduler.
+
+An unauthorised connection into the organisation allowed the Sasser worm to contaminate a local process control network before the relevant Microsoft Patch had been made available.
+
+The Korgo worm impacted 20 workstations (view only terminals) as the result of a corporate patch distribution problem.
+
+The paper mill had just completed an upgrade of its paper machine, during which a number of engineers had been brought in from head office to assist with DCS commissioning. Everyone on the DCS commissioning team knew the passwords for the control system computers and when the project was completed, no one bothered to change them.
+
+In November 2001, 49-year-old Vitek Boden was sentenced to two years in prison for using stolen wireless radio, SCADA controller and control software to release up to one million litres of sewage into the river and coastal waters of Maroochydore in Queensland, Australia. Boden, who had been a consultant on the water project, conducted the attacks in early 2000 after he was refused a full-time job with the Maroochy Shire government. 
+
+A security consultant was scanning the food companies business and process networks for vulnerabilities. Probe packets containing deliberately malformed entered the Ethernet-based process control network and caused all PLCs to hard fault. The packets contained malformed ICMP Redirects messages with a subcode of 4 or greater.
+
+A hacker or group of hackers gained unauthorized access to a modular hybrid controller resulting in a denial of service and loss of equipment control. There were two phases to the attack. First, hackers opened connections, sent unknown messages, and left without closing the connection. After repeated attacks, all connections were consumed resulting in a denial of service to legitimate users on the Ethernet port. Second, hackers sent a Web page to the controller containing Java script and the text: \xe2\x80\x9cHello! Welcome to http://worm.com Hacked by Chinese.\xe2\x80\x9d This exposed a bug in the TCP/IP stack causing the controller to reset, forcing all outputs to their off state.
+
+A 350-ton capacity multi-purpose mill probably for wheat flour, was shut down due to the Stuxnet virus.
+
+The control system of the city water utility in Springfield, Illinois was hacked.&nbsp; Hackers gained remote access  to the control system causing the system to turn on and off repeatedly leading to the burnout of a water pump.&nbsp; On November 8, 2011 ,&nbsp; a water district employee detected the problems in the SCADA system.&nbsp; The &#8220;Public Water District Cyber Intrusion&#8221; report was released by the Illinois Statewide Terrorism and Intelligence Center indicated that forensic evidence suggests that hackers may have accessed the system as early as September 2011.&nbsp; 
+
+A computer virus was detected on the network of an automanufacturer.&nbsp; Unknown attackers stole employees&#8217; IDs and encrypted passwords after planting a computer virus on the company&#8217;s computer systems.&nbsp; The company waited a week to disclose the attack to allow time to investigate.
+
+A corporate laptop user installed software, unaware that it included an unpatched version of msSQL. Sometime later the user connected PC to the Internet (in violation of company policy) to access email via an ISP. SQLslammer infected the internet connected machine. The user then brought the infected machine into the office and connected to the network, causing a small outbreak of the SQLslammer worm within the corporate network. 
+
+Malicious Code was found on a PLC. The code was date-triggered.
+
+Malicious Code was found on a PLC. The code was date-triggered.
+
+The morning of July 31, 1996, the first worker in the door at Omega Engineering&#8217;s manufacturing plant in Bridgeport, N.J., logged on to his computer and unwittingly detonated a software time bomb that systematically eradicated all the programs that ran the company&#8217;s manufacturing operations. Ralph Michel, Omega&#8217;s chief financial officer, testified that the software bomb destroyed all the programs and code generators that allowed the company to manufacture 25,000 different products and to customize those basic products into as many as 500,000 different designs. \n \nShortly before the attack, Tim Lloyd, a 37-year-old network administrator, moved the programs off individual workstations and onto Omega&#8217;s central NetWare file server. And there were no back-up tapes to access because Lloyd brought them home and reformatted them, according to testimony at his trial for computer sabotage, which ended last week in a guilty verdict.&nbsp; He was sentenced to 41 months in federal prison and ordered to pay more than $2 million in restitution.
+
+A virus apparently attacked an Air Canada Jazz flight-planning computer at an operations centre in Halifax that provides essential information on fueling, weather, and other variables. Without the computer&#8217;s flight information releases, aircraft cannot take off.&nbsp; 
+
+MONTREAL (Reuters) - The Nacchi virus infected Air Canada reservations systems, prompting the airline to warn its passengers of delays and cancellations to flights.
+
+A 19-year-old woman faces felony charges for allegedly tampering with a public gondola system, causing a series of 33 shutdowns on the 2.5-mile line that shuttles thousands of people a day over a mountaintop at this ski resort.&nbsp; Alisha Sult, an operator on the gondola system, was arrested New Year&#8217;s Day on three counts of endangering public transportation. Sult is suspected of allegedly tampering with a computer system that controls the gondola.
+
+On January 25, 2003, Davis-Besse nuclear power plant was infected with the MS SQL Server 2000 worm. The infection caused data overload in the site network, resulting in the inability of the computers to communicate with each other. 
+
+The Sobig computer virus was blamed for shutting down train signaling systems throughout the East coast of the US. The virus infected the computer system at CSX Corp.&#8216;s Jacksonville, Fla., headquarters, shutting down signaling, dispatching and other systems at about 1:15 a.m. EDT, CSX spokesman Adam Hollingsworth said (#2).
+
+The SCADA control network used frame relay. The telecommunications frame relay provider utilized Asynchronous Transfer Mode (ATM) through the telecommunications network backbone for a variety of services. The ATM bandwidth became overwhelmed by the worm, blocking SCADA traffic on the Frame Relay service.
+
+A server on the utility&#8217;s control center LAN running SQL was not patched. The worm apparently migrated through the corporate networks until it finally reached the critical SCADA network via a remote computer through a VPN connection.
+
+On March 10, 1997, an unidentified juvenile computer hacker broke into a Bell Atlantic control system used for the air traffic communications at the Worcester, Massachusetts airport, causing a system crash that disabled the phone system at the airport for six hours. 
+
+Between July 8th and August 31st, 1994, the perpetrator, Lane Jarret Davis, accessed a computer or computers belonging to the Salt River Project via a dialup modem on a backup computer. He was able to access data and delete files on systems responsible for the monitoring and delivery of water and power to SRP customers, as well as customer, financial and personnel records (#1).
+
+A computer glitch affected a control center in Omaha, NE., stopping some of the trains.&nbsp; Trains on the Union Pacific Northwest, West,&nbsp; North and Milwaukee District North lines were affected.&nbsp; Delays were reported to be around a half hour on some lines.
+
+The entire computer network of the Cook County Department of Highway and Transportation was shut down for nearly two weeks due to a virus infection.&nbsp; The Department of Highway and Transportation maintains hundreds of miles of roads in the Chicago area.&nbsp;  It is believed that someone, possibly a county employee may have allowed a virus into their systems by surfing the internet or using a flash drive from home.&nbsp;  The virus caused  files to be renamed.&nbsp; Ricardo Lafosse, Cook County&#8217;s  Chief Information Security Officer said the department was forced to immediately shut down the entire network until it cook be cleaned up.&nbsp;   The virus attacked about 200 computers.&nbsp; It took five technicians working full time for 216 hours to clean up the network.
+
+RasGas, the second largest producer of liquified natural gas in the world, was attacked by the Shamoon virus about 2 weeks after a similar attack on Saudi Aramco.&nbsp; The company website and corporate network were shutdown by the virus for several days.&nbsp; According to a company spokesman the virus did not impact production operations or cargo deliveries.&nbsp; RasGas is a joint venture between Qatar Petroleum and ExxonMobil.
+
+The process control network (PCN) was infected with a virus.&nbsp; Twelve PC&#8217;s on the process control network were infected. The virus infection did not affect production, or cause any environmental or property damage.&nbsp; The virus was likely introduced via an infected laptop.&nbsp;  The laptop was not scanned for viruses using up to date anti-virus software.
+
+An error message was found on a local operator panel.&nbsp; After an unsuccessful reboot, antivirus software was installed.&nbsp; An investigation revealed that the Local operator panel was potentially infected with a virus via a USB flash drive.
+
+A PC worm infected the networking systems of two hospitals in Scotland.&nbsp; The infection started in the laboratory computers at the Stobhill and Gartnavel general hospitals and the Beatson West of Scotland Cancer Care Centre. The systems were completely non-functional.&nbsp; Appointments for cancer patients had to be postponed. Systems were shut down for 2 days.
+
+A computer glitch caused the Superman:&nbsp; Ultimate Flight rollercoaster to become stuck at the top of a 150 foot hill. Twelve passengers were stranded for 90 minutes.&nbsp; The cause of the malfunction is unknown.
+

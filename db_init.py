@@ -1,3 +1,4 @@
+from tkinter.constants import E
 import pymongo
 import pprint
 import csv
@@ -14,19 +15,22 @@ collection.drop() #ripulisce la collection prima di aggiungere i dati
 
 #CSV to JSON Conversion 
 csvfile = open('dataset/all.csv', 'r') 
-reader = csv.DictReader(csvfile, delimiter=';')  
+reader = csv.DictReader(csvfile, delimiter=';') # è una variabile di tipo dizionario
+#           0        1         2              3                4              5
 header= ["Attack", "Year", "Records", "Organization Type", "Country", "Attack Vector"] 
 records = []
 for each in reader: 
-    #pprint.pprint(each)
-    records.append(each)
-    #collection.insert_one(each) #inserimento nel db un record alla volta (più chiamate al server)
+    attack = each["Attack"]
+    year = int(each["Year"])
+    org_type = each["Organization Type"]
+    country = each["Country"]
+    attack_vector = each["Attack Vector"]
+    record = {header[0]: attack, header[1]:year, header[3]:org_type, header[4]:country, header[5]:attack_vector}
+    
+    records.append(record)
+    #collection.insert_one(record) #inserimento nel db un record alla volta (più chiamate al server)
 
-pprint.pprint(records)
+#pprint.pprint(records)
 collection.insert_many(records) #inserimento nel db di tutti i record (una sola chiamata al server)
 
 client.close()
-    
-
-
-

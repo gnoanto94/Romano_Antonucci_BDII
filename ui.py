@@ -59,9 +59,9 @@ def create_db_window():
     # Add text field and buttons for the queries
 
 
-    tk.Label(window, text="Search:").grid(row=0, column=0, sticky='W', padx=5, pady=5)
+    tk.Label(window, text="Search:", background='#edf0f5').grid(row=0, column=0, sticky='W', padx=5, pady=5)
     global query_field
-    query_field = tk.Text(window, height=2, width=40)
+    query_field = tk.Text(window, height=1, width=40)
     query_field.grid(row=0, sticky='W', padx=65, pady=5)
 
     query_button = tk.Button(window, text="Go!", width=4, command=start_query).grid(row=0, column=0, sticky='W', padx=400, pady=5)
@@ -71,14 +71,14 @@ def create_db_window():
     var1 = tk.StringVar(value=1)       # var1 è per il gruppo dei radio button -> seleziona univoca
     
 
-    tk.Label(window, text="\nSelezionare il tipo di ricerca:").grid(row=1, column=0, sticky='W', padx=50)
+    tk.Label(window, text="\nSelezionare il tipo di ricerca:", background='#edf0f5').grid(row=1, column=0, sticky='W', padx=50)
 
     global radio1, radio2, radio3, radio4
 
-    radio1 = tk.Radiobutton(window, variable = var1, text = "View All", value = "1")
-    radio2 = tk.Radiobutton(window, variable = var1, text = "View By Country", value = "2")
-    radio3 = tk.Radiobutton(window, variable = var1, text = "View By Name", value = "3")
-    radio4 = tk.Radiobutton(window, variable = var1, text = "...", value = "4")
+    radio1 = tk.Radiobutton(window, variable = var1, text = "View All", value = "1", background='#edf0f5')
+    radio2 = tk.Radiobutton(window, variable = var1, text = "View By Country", value = "2", background='#edf0f5')
+    radio3 = tk.Radiobutton(window, variable = var1, text = "View By Name", value = "3", background='#edf0f5')
+    radio4 = tk.Radiobutton(window, variable = var1, text = "...", value = "4", background='#edf0f5')
 
 
     radio1.grid(row=2, column=0, sticky='W', padx=55)
@@ -87,7 +87,7 @@ def create_db_window():
     radio4.grid(row=5, column=0, sticky='W', padx=55)
 
     global search_label
-    search_label = tk.Label(window, text="Contenuti del database:")
+    search_label = tk.Label(window, text="Contenuti del database:", background='#edf0f5')
     search_label.grid(row=6, column=0)
 
 
@@ -136,13 +136,7 @@ def create_db_window():
     tree.configure(yscroll=scrollbar.set)
     scrollbar.grid(row=7, column=1)
 
-    # Add data-update buttons
-
-    b1 = tk.Button(window, text="Add Entry").grid(row=8, column=0, padx=30, pady=10, sticky='W')   #, height=2, width=15 , command=view_all)
-    b2 = tk.Button(window, text="Edit Entry").grid(row=8, column=0, padx=100, pady=10, sticky='W')   # , command=view_all)
-    b3 = tk.Button(window, text="Delete Entry").grid(row=8, column=0, padx=170, pady=10, sticky='W')   # , command=view_all)
-
-
+    window.configure(background='#edf0f5')
 
 
 def view_all():
@@ -261,4 +255,5 @@ login_button = tk.Button(window, text = "Login", command = login_btn)
 login_button.place(x = 150, y = 135, width = 55)
 
 app = App(window)
+window.configure(background='#edf0f5')
 window.mainloop()

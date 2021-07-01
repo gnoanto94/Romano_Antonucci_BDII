@@ -2,7 +2,9 @@ import tkinter as tk
 import pymongo
 import traceback
 
+from tkinter import ttk
 from tkinter.messagebox import showerror, showinfo
+from pymongo.message import _query_compressed
 from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 
@@ -14,6 +16,8 @@ def login_btn():
     """Function used by the login button to start the database login process"""
 
     db_login(username.get(), password.get())
+
+
 
 
 def db_login(usr, pwd):
@@ -38,50 +42,95 @@ def db_login(usr, pwd):
 
     window.destroy()
     create_db_window()
-   
+
+
+
 
 
 def create_db_window():
     """This function creates the database-interaction window"""
 
     window = tk.Tk(className="database")
+
+    # Add the data table
+
+    global tree
+    tree = ttk.Treeview(window, columns=('1', '2', '3','4','5'), show='headings')
+
+    
+    tree.heading('1', text='Attack')
+    tree.heading('2', text='Year')
+    tree.heading('3', text='Organization Type')
+    tree.heading('4', text='Country')
+    tree.heading('5', text='Attack Vector')
+
+    tree.grid(row=0, column=0, sticky='NSEW')
+    
+    # Inizializziamo in maniera tale da vedere tutti gli elementi già da subito.
+    view_all()
+
+    
+    # Add a scrollbar
+    scrollbar = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
+    tree.configure(yscroll=scrollbar.set)
+    scrollbar.grid(row=0, column=1, sticky='NS')
+
+    
+
+    # Add query buttons
+
+    b1 = tk.Button(window, text="View all", height=2, width=15, command=view_all) #creating buttons for the various operations. Giving it a name and assigning a particular command to it. 
+    b2 = tk.Button(window, text="Search entry", height=2, width=15) #, command=search_command)
+    b3 = tk.Button(window, text="Add entry", height=2, width=15) #, command=add_command)
+    b4 = tk.Button(window, text="Update selected", height=2,width=15) #, command=update_command)
+    b5 = tk.Button(window, text="Delete selected", height=2, width=15) #, command=delete_command)
+    b6 = tk.Button(window, text="SearchByCountry", height=2,width=15, command=attack_by_exact_country)
+
+    b1.grid(sticky='W')
+    b2.grid(sticky='W')
+    b3.grid(sticky='W')
+    b4.grid(sticky='W')
+    b5.grid(sticky='W')
+    b6.grid(sticky='W')
+
+
+    # Add text field for the queries
+    global field
+
+    field = tk.Text(window, height=5, width=40)
+    field.grid(sticky='W')
+
     window.geometry("1200x800")
+    #window.mainloop()
 
 
-    l1 = tk.Label(window, text="QUERY") #creating input labels in the window
-    l1.grid(row=0, column=0) #determining size of the input grid for these labels
 
-    title_text = tk.StringVar()
-    e1 = tk.Entry(window, textvariable=title_text) #taking input from the user in the grid and storing it in a string variable
-    e1.grid(row=0, column=1)
 
-    list1 = tk.Listbox(window, height=25, width=65) #creating the list space to display all the rows of the table
-    list1.grid(row=2, column=0, rowspan=6, columnspan=2) #determining the size
+def view_all():
 
-    sb1 = tk.Scrollbar(window) #creating a scrollbar for the window to scroll through the list entries
-    sb1.grid(row=2, column=2, rowspan=6)
+    stampa(collection.find())
 
-    list1.configure(yscrollcommand=sb1.set) #configuring the scroll function for the scrollbar object sb1
-    sb1.configure(command=list1.yview)
 
-    b1 = tk.Button(window, text="View all", width=12) #, command=view_command) #creating buttons for the various operations. Giving it a name and assigning a particular command to it. 
-    b1.grid(row=2, column=3) #size of the button
 
-    b2 = tk.Button(window, text="Search entry", width=12) #, command=search_command)
-    b2.grid(row=3, column=3)
+def stampa(attacks):
 
-    b3 = tk.Button(window, text="Add entry", width=12) #, command=add_command)
-    b3.grid(row=4, column=3)
+    item_count = len(tree.get_children())
+    
+    #se non faccio questo controllo e non c'è nulla nella treeview, si ha exception
+    if item_count > 0:
+        tree.delete(*tree.get_children())
 
-    b4 = tk.Button(window, text="Update selected", width=12) #, command=update_command)
-    b4.grid(row=5, column=3)
+    for attack in attacks:
 
-    b5 = tk.Button(window, text="Delete selected", width=12) #, command=delete_command)
-    b5.grid(row=6, column=3)
+        attack = list(attack.values())[1:len(attack)]
+        tree.insert('', tk.END, values=attack)
 
-    b6 = tk.Button(window, text="Close", width=12) #, command=window.destroy)
-    b6.grid(row=7, column=3)
 
+
+def attack_by_exact_country():
+    country = field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
+    attacks = collection.find({"Country":country})
+    stampa(attacks)
 
 
 
@@ -101,7 +150,7 @@ class App:
         self.frame.pack()
 
     def login_error(self, *args):
-        err = traceback.format_exception(*args)
+        traceback.format_exception(*args)
         showerror('Errore', 'Le credenziali inserite non sono valide. Riprovare.', parent = window)
 
         
@@ -111,14 +160,14 @@ window = tk.Tk(className="login")
 window.geometry("300x300")
 window.eval('tk::PlaceWindow . center')
 
-usr_label = tk.Label(window, text = "Username -")
+usr_label = tk.Label(window, text = "Username: ")
 usr_label.place(x = 50, y = 20)
  
 username = tk.Entry(window, width = 35)
 username.place(x = 150, y = 20, width = 100)
 username.insert(-1, "admin")
 
-pwd_label = tk.Label(window, text ="Password -")
+pwd_label = tk.Label(window, text ="Password: ")
 pwd_label.place(x = 50, y = 50)
  
 password = tk.Entry(window, show = "*", width = 35)

@@ -1,7 +1,9 @@
+from os import name
 from tkinter.constants import E
 import pymongo
 import pprint
 import csv
+import datetime
 
 from pymongo import MongoClient
 client = MongoClient()
@@ -9,28 +11,88 @@ client = MongoClient()
 #admin:oNWZDGjCxDHtnp8o
 client = pymongo.MongoClient("mongodb+srv://admin:oNWZDGjCxDHtnp8o@cluster0.bkvuu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 print("Info: "+str(client))
-db = client.attacks
+db = client.ksprojects
 collection = db.data
 collection.drop() #ripulisce la collection prima di aggiungere i dati
 
 #CSV to JSON Conversion 
-csvfile = open('dataset/all.csv', 'r') 
-reader = csv.DictReader(csvfile, delimiter=';') # è una variabile di tipo dizionario
-#           0        1         2              3                4              5
-header= ["Attack", "Year", "Records", "Organization Type", "Country", "Attack Vector"] 
+csvfile1 = open('dataset/2016.csv', 'r') 
+csvfile2 = open('dataset/ks-projects-201801modificato.csv', 'r')
 records = []
-for each in reader: 
-    attack = each["Attack"]
-    year = int(each["Year"])
-    org_type = each["Organization Type"]
-    country = each["Country"]
-    attack_vector = each["Attack Vector"]
-    record = {header[0]: attack, header[1]:year, header[3]:org_type, header[4]:country, header[5]:attack_vector}
-    
-    records.append(record)
-    #collection.insert_one(record) #inserimento nel db un record alla volta (più chiamate al server)
+
+def parse(csvfile):
+    reader = csv.DictReader(csvfile, delimiter=';') # è una variabile di tipo dizionario
+    #         0      1              2              3              4          5         6        7            8         9         10         11          12
+    header= ["_id", "Name", "Main Category", "Sub Category", "Currency", "Deadline", "Goal", "Launched", "Pledged", "State", "Backers", "Country", "USD Pledged"] 
+    from datetime import datetime
+
+    for each in reader: 
+        #pprint.pprint(each)
+        id = each["\ufeffID"]
+        name = each["name"]
+        category = each["category"]
+        main_category = each["main_category"]
+        currency = each["currency"]
+        deadline = each["deadline"]
+        try:
+                goal = float(each["goal"])
+        except ValueError:
+                goal = 0.0
+        launched = each["launched"]
+        #pprint.pprint(launched)
+        try:
+                pledged = float(each["pledged"])
+        except ValueError:
+                pledged = 0.0
+        state = each["state"]
+        backers = each["backers"]
+        country = each["country"]
+        #usd_pledged = float(each["usd pledged"])
+
+        date_format_deadline = '%m/%d/%Y %H:%M' #'%Y-%m-%d %H:%M:%S'
+        date_format_launched = '%d/%m/%Y %H:%M'
+        try:
+                deadline_obj = datetime.strptime(deadline, date_format_deadline)
+                deadline_obj = deadline_obj.date().year
+        except ValueError:
+                if deadline != '':
+                        deadline_obj = datetime.strptime(deadline, date_format_launched)
+                        deadline_obj = deadline_obj.date().year
+                else:
+                        deadline_obj = ''
+
+        try:
+                launched_obj = datetime.strptime(launched, date_format_launched)
+                launched_obj = launched_obj.date().year
+        except ValueError:
+                if launched != '':
+                        launched_obj = datetime.strptime(launched, date_format_deadline)
+                        launched_obj = launched_obj.date().year
+                else:
+                        launched_obj = ''
+
+        record = {header[0]: id, 
+                header[1]:name, 
+                header[2]:main_category, 
+                header[3]:category, 
+                header[4]:currency, 
+                header[5]:deadline_obj, 
+                header[6]:goal,
+                header[7]:launched_obj,
+                header[8]:pledged,
+                header[9]:state,
+                header[10]:backers,
+                header[11]:country
+                }
+        
+        records.append(record)
+        #pprint.pprint(records)
+        #collection.insert_one(record) #inserimento nel db un record alla volta (più chiamate al server)
+
+parse(csvfile1)
+#parse(csvfile2)
 
 #pprint.pprint(records)
 collection.insert_many(records) #inserimento nel db di tutti i record (una sola chiamata al server)
-
+print("HO FINITO")
 client.close()

@@ -8,7 +8,7 @@ from tkinter.constants import END
 from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 
-
+DEBUG = False
 
 
 
@@ -174,7 +174,7 @@ def print_to_table(projects):
         project=list(project.values())
         
         project.insert(0,row_index)
-        print(project)
+        if DEBUG: print(project)
         tree.insert('', tk.END, values=project)
         row_index += 1
 
@@ -184,7 +184,7 @@ def start_query():
     """ Starts a query based on the selected radio button and content of the query-text field"""
     
     query_content = query_field.get("1.0", "end-1c") # prende dal primo al penultimo carattere, altrimenti considera anche newline
-    print(query_content)
+    if DEBUG: print(query_content)
 
     if(var1.get() == "1"): #view all
 

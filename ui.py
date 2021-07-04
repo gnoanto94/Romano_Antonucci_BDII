@@ -1,14 +1,20 @@
 import tkinter as tk
 import pymongo
 import traceback
+import Pmw
 
+from re import T
 from tkinter import ttk
 from tkinter.messagebox import NO, showerror
-from tkinter.constants import END
 from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 
+
+
 DEBUG = False
+ 
+skipvalue, row_index, total_entries = 0, 0, 0
+already_counted = 0 # flag to count the total number of entries for a given query
 
 
 
@@ -21,7 +27,7 @@ def login_btn():
 
 
 def db_login(usr, pwd):
-    """ Given a username and a password, this function attempts a login to the database."""
+    """ Given a username and a password, this function attempts a login to the database. """
 
     client = MongoClient()
     client = pymongo.MongoClient("mongodb+srv://"+usr+":"+pwd+"@cluster0.bkvuu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
@@ -58,44 +64,49 @@ def create_db_window():
 
     # Add text field and buttons for the queries
 
-
     tk.Label(window, text="Search:", background='#edf0f5', font=('Open Sans', 12)).grid(row=0, column=0, sticky='W', padx=5, pady=5)
     global query_field
     query_field = tk.Text(window, height=1, width=40, font=('Open Sans', 12))
     query_field.grid(row=0, sticky='W', padx=65, pady=5)
 
-    query_button = tk.Button(window, text="Go!", width=8, command=start_query, font=('Open Sans', 11)).grid(row=0, column=0, sticky='W', padx=450, pady=5)
-    query_reset_button = tk.Button(window, text="Reset", command=reset_query_field, width=8, font=('Open Sans', 11)).grid(row=0, column=0, sticky='W', padx=540, pady=5)
+    tk.Button(window, text="Go!", width=8, command=start_new_query, font=('Open Sans', 11)).grid(row=0, column=0, sticky='W', padx=450, pady=5)
+    tk.Button(window, text="Reset", width=8, command=reset_query_field, font=('Open Sans', 11)).grid(row=0, column=0, sticky='W', padx=540, pady=5)
     
-    global var1 
-    var1 = tk.StringVar(value=1)       # var1 è per il gruppo dei radio button -> seleziona univoca
+    global radio_value 
+    radio_value = tk.StringVar(value=1)       # radio_value contains the value corresponding to the selected radio button. It's needed in order to tell the selected button.
     
-
-    tk.Label(window, text="\nSelezionare il tipo di ricerca:", background='#edf0f5', font=('Open Sans', 13)).grid(row=1, column=0, sticky='W', padx=50)
+    tk.Label(window, text="\nSelect your query:", background='#edf0f5', font=('Open Sans', 13)).grid(row=1, column=0, sticky='W', padx=35, pady=5)
     
+    global radio1, radio2, radio3, radio4, radio5, radio6
 
-    global radio1, radio2, radio3, radio4
+    radio1 = tk.Radiobutton(window, variable = radio_value, text = "View All", value = "1", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
+    radio2 = tk.Radiobutton(window, variable = radio_value, text = "View By Country", value = "2", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
+    radio3 = tk.Radiobutton(window, variable = radio_value, text = "View By Name", value = "3", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
+    radio4 = tk.Radiobutton(window, variable = radio_value, text = "View By State", value = "4", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
+    radio5 = tk.Radiobutton(window, variable = radio_value, text = "View By Main Category", value = "5", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
+    radio6 = tk.Radiobutton(window, variable = radio_value, text = "View By Sub-Category", value = "6", background='#edf0f5', font=('Open Sans', 11), command=radio_reset)
 
-    radio1 = tk.Radiobutton(window, variable = var1, text = "View All", value = "1", background='#edf0f5', font=('Open Sans', 11))
-    radio2 = tk.Radiobutton(window, variable = var1, text = "View By Country", value = "2", background='#edf0f5', font=('Open Sans', 11))
-    radio3 = tk.Radiobutton(window, variable = var1, text = "View By Name", value = "3", background='#edf0f5', font=('Open Sans', 11))
-    radio4 = tk.Radiobutton(window, variable = var1, text = "...", value = "4", background='#edf0f5', font=('Open Sans', 11))
+    # Bind the tooltip for some of the radio buttons
+    balloon = Pmw.Balloon(window)
+    balloon.bind(radio4,"Options: failed, successful")
 
+    radio1.grid(row=2, column=0, sticky='W', pady=2, padx=55)
+    radio2.grid(row=3, column=0, sticky='W', pady=2, padx=55)
+    radio3.grid(row=4, column=0, sticky='W', pady=2, padx=55)
 
-    radio1.grid(row=2, column=0, sticky='W', padx=55)
-    radio2.grid(row=3, column=0, sticky='W', padx=55)
-    radio3.grid(row=4, column=0, sticky='W', padx=55)    
-    radio4.grid(row=5, column=0, sticky='W', padx=55)
+    radio4.grid(row=2, column=0, sticky='W', pady=2, padx=305)
+    radio5.grid(row=3, column=0, sticky='W', pady=2, padx=305)
+    radio6.grid(row=4, column=0, sticky='W', pady=2, padx=305)
 
     global search_label
-    search_label = tk.Label(window, text="Contenuti del database:", background='#edf0f5', font=('Open Sans', 13))
-    search_label.grid(row=6, column=0)
+    search_label = tk.Label(window, text="All Database contents:", background='#edf0f5', font=('Open Sans', 13))
+    search_label.grid(row=6, column=0, pady=5)
 
 
     # Add the data table
 
     global tree
-    tree = ttk.Treeview(window, selectmode="extended", columns=('0','1', '2', '3','4','5','6','7','8','9','10','11','12'), show='headings')
+    tree = ttk.Treeview(window, selectmode="extended", columns=('0','1', '2', '3','4','5','6','7','8','9','10','11','12'), show='headings', height=20)
 
 
     style = ttk.Style()
@@ -117,105 +128,190 @@ def create_db_window():
     tree.heading('12', text = 'Country')
 
 
-    tree.column('0',  minwidth=80,  width=80, stretch=NO) 
-    tree.column('1',  minwidth=80,  width=125, stretch=NO)
+    tree.column('0',  minwidth=60,  width=60,  stretch=NO) 
+    tree.column('1',  minwidth=100, width=100, stretch=NO)
     tree.column('2',  minwidth=80,  width=125, stretch=NO)
     tree.column('3',  minwidth=80,  width=125, stretch=NO)
     tree.column('4',  minwidth=80,  width=125, stretch=NO)
-    tree.column('5',  minwidth=70,  width=70, stretch=NO)
-    tree.column('6',  minwidth=70,  width=70, stretch=NO)
-    tree.column('7',  minwidth=80,  width=80, stretch=NO)
-    tree.column('8',  minwidth=90,  width=90, stretch=NO)
-    tree.column('9',  minwidth=90,  width=90, stretch=NO)
-    tree.column('10', minwidth=100, width=100, stretch=NO)
-    tree.column('11', minwidth=70,  width=70, stretch=NO)
-    tree.column('12', minwidth=70,  width=70, stretch=NO)
+    tree.column('5',  minwidth=70,  width=70,  stretch=NO)
+    tree.column('6',  minwidth=70,  width=70,  stretch=NO)
+    tree.column('7',  minwidth=80,  width=80,  stretch=NO)
+    tree.column('8',  minwidth=90,  width=90,  stretch=NO)
+    tree.column('9',  minwidth=90,  width=90,  stretch=NO)
+    tree.column('10', minwidth=80,  width=80,  stretch=NO)
+    tree.column('11', minwidth=70,  width=70,  stretch=NO)
+    tree.column('12', minwidth=60,  width=60,  stretch=NO)
     
-
-    # numero riga, currency, deadline, launched, backers, state
-
-    tree.grid(row=7, column=0, padx=5, pady=10)
+    tree.grid(row=7, column=0, padx=10, pady=10)
     
     # The data table will contain all entries by default in order to show the database contents
-    # view_all()
+    view_all()
 
+    # Add paging buttons and text
+    tk.Button(window, text="Show Previous", command=prev_btn, font=('Open Sans', 11)).grid(row=9, column=0, padx=10, pady=10, sticky='W')
+    tk.Button(window, text="Show Next", command=next_btn, font=('Open Sans', 11)).grid(row=9, column=0, padx=10, pady=10, sticky='E')
     
-    # Add a scrollbar
-    scrollbar = ttk.Scrollbar(window, orient=tk.VERTICAL, command=tree.yview)
-    tree.configure(yscroll=scrollbar.set)
-    scrollbar.grid(row=7, column=1, sticky='ns')
+    
+    global entries_label
+    entries_label = tk.Label(window, text="Showing entries 0-20 of "+str(collection.count_documents({}))+" values", background='#edf0f5', font=('Open Sans', 11))
+    entries_label.grid(row=9, column=0, pady=10)
+
 
     window.configure(background='#edf0f5')
 
 
+
+def next_btn():
+    """ Command for the next button. Shows 20 next entries"""
+    global skipvalue
+    skipvalue += 20
+    start_query()
+
+
+def prev_btn():
+    """ Command for the previous button. Shows 20 previous entries"""
+    global skipvalue, row_index
+    
+    if skipvalue >= 20:
+        skipvalue -=20
+        row_index -=40
+        start_query()
+
+
+def radio_reset():
+    """ Command for all radio buttons, used to reset all indexes in order to start a new query over the selected radio button"""
+    global skipvalue, row_index
+    skipvalue = 0
+    row_index = 0
+
+
+
+
 def view_all():
     """ Wrapper of the print_to_table function, used over all the database entries"""
+    print_to_table(collection.find({}, skip=skipvalue, limit=20))
 
-    print_to_table(collection.find())
+
 
 
 def print_to_table(projects):
     """ Used to add values to the database-contents table"""
+    global row_index
 
-    item_count = len(tree.get_children())
+    #item_count = len(tree.get_children())
     
     # Clear the previous content inside the table in order to add the new entries.
-    if item_count > 0:
+    if len(tree.get_children()) > 0:
         tree.delete(*tree.get_children())
 
     # Add the required entries inside the table
-    global row_index
-    row_index = 1 #indice di riga
-    
-    
     for project in projects:
 
-        #attack = list(attack.values())[1:len(attack)]
         project=list(project.values())
-        
         project.insert(0,row_index)
+        
         if DEBUG: print(project)
+
         tree.insert('', tk.END, values=project)
         row_index += 1
 
 
 
+def start_new_query():
+    """ Resets all indexes and skips, an then start a query. Used as the command for the GO! Button"""
+    global skipvalue, row_index, entries_label, already_counted
+    already_counted = 0
+    skipvalue = 0
+    row_index = 0
+    start_query()
+
+
+
+
 def start_query():
     """ Starts a query based on the selected radio button and content of the query-text field"""
-    
+    global skipvalue, search_label, entries_label, total_entries, already_counted
+
     query_content = query_field.get("1.0", "end-1c") # prende dal primo al penultimo carattere, altrimenti considera anche newline
+    
+
     if DEBUG: print(query_content)
-
-    if(var1.get() == "1"): #view all
-
-        search_label.configure(text="Contenuti del database:")
+    
+    #view all
+    if(radio_value.get() == "1"):
+        search_label.configure(text="All Database contents:")
+        if already_counted == 0:
+            total_entries = collection.count_documents({})
+            already_counted = 1
         view_all()
 
-    if(var1.get() == "2"): #view by country
+    #view by country
+    if(radio_value.get() == "2"): 
 
         country = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
-        projects = collection.find({"Country":country})
-
-        search_label.configure(text="Risultati della ricerca utilizzando [View by Country] con ["+query_field.get("1.0", "end-1c")+"]")
-
+        projects = collection.find({"Country":country}, skip = skipvalue, limit=20)
+        
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Country":country})
+            already_counted = 1
+        
+        search_label.configure(text="Results of [View by Country] with value ["+query_field.get("1.0", "end-1c")+"]")
         print_to_table(projects)
 
-    
-    if(var1.get() == "3"): #view by name
-
+    #view by name
+    if(radio_value.get() == "3"): 
         name = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
-        projects = collection.find({"Name":name})
+        projects = collection.find({"Name":name}, skip = skipvalue, limit = 20)
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Name":name})
+            already_counted = 1
 
-        search_label.configure(text="Risultati della ricerca utilizzando [View by Name] con ["+query_field.get("1.0", "end-1c")+"]")
+        search_label.configure(text="Results of [View by Name] with value ["+query_field.get("1.0", "end-1c")+"]")
         print_to_table(projects)
 
+    #view by state
+    if(radio_value.get() == "4"):
+        state = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
+        projects = collection.find({"State":state}, skip = skipvalue, limit = 20)
+        
+        if already_counted == 0:
+            total_entries = collection.count_documents({"State":state})
+            already_counted = 1
 
+        search_label.configure(text="Results of [View by State] with value ["+query_field.get("1.0", "end-1c")+"]")
+        print_to_table(projects)
+
+    #view by main category
+    if(radio_value.get() == "5"):
+        category = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
+        projects = collection.find({"Main Category":category}, skip = skipvalue, limit = 20)
+       
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Main Category":category})
+            already_counted = 1
+
+        search_label.configure(text="Results of [View by Main Category] with value ["+query_field.get("1.0", "end-1c")+"]")
+        print_to_table(projects)
+
+    #view by sub-category
+    if(radio_value.get() == "6"):
+        category = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
+        projects = collection.find({"Sub Category":category}, skip = skipvalue, limit = 20)
+        
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Sub Category":category})
+            already_counted = 1
+        
+        search_label.configure(text="Results of [View by Sub-Category] with value ["+query_field.get("1.0", "end-1c")+"]")
+        print_to_table(projects)
+        
+
+    #Modify the entries label under the content table
+    if(row_index > 0):
+        entries_text = "Showing entries "+str(int(row_index-20))+"-"+str(row_index) + " over "+str(total_entries)+" values"
+        entries_label.configure(text=entries_text)
     
-    if(var1.get() == "4"):
-        print("... è selezionato")
-
-
-    query_field.delete("1.0", "end-1c")
+    #query_field.delete("1.0", "end-1c")
 
 
 def reset_query_field():
@@ -229,6 +325,11 @@ def reset_query_field():
         tree.delete(*tree.get_children())
 
     
+
+    
+
+
+
 
 
 
@@ -244,7 +345,11 @@ class App:
         traceback.format_exception(*args)
         showerror('Errore', 'Le credenziali inserite non sono valide. Riprovare.', parent = window)
 
-        
+
+
+
+
+
 
 window = tk.Tk(className="login")
 window.geometry("300x300")

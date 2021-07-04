@@ -95,22 +95,50 @@ def projects_by_sub_category(category):
     return projects
 
 
-def num_of_projects_in_country(country):
+def num_of_projects_in_country():
     projects = collection.aggregate([
     {
-        '$match': {
-            'Country': 'IT'
+        '$project': {
+            '_id': 0, 
+            'Country': 1
         }
     }, {
         '$group': {
             '_id': '$Country', 
-            'projects_in_country': {
+            'num_of_projects': {
                 '$sum': 1
             }
+        }
+    }, {
+        '$sort': {
+            '_id': 1
         }
     }
     ])
 
+    if DEBUG: stampa(projects)
+    return projects
+
+def num_of_projects_launched_in_year():
+    projects = collection.aggregate([
+    {
+        '$project': {
+            '_id': 0, 
+            'Launched': 1
+        }
+    }, {
+        '$group': {
+            '_id': '$Launched', 
+            'num_of_projects': {
+                '$sum': 1
+            }
+        }
+    }, {
+        '$sort': {
+            '_id': 1
+        }
+    }
+    ])
     if DEBUG: stampa(projects)
     return projects
 

@@ -4,7 +4,7 @@ import traceback
 
 from re import T
 from tkinter import ttk
-from tkinter.messagebox import NO, showerror
+from tkinter.messagebox import NO, askyesno, showerror
 from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 
@@ -63,25 +63,30 @@ def create_db_window():
 
     # Add text field and buttons for the queries
 
-    global query_field, go_btn, rst_btn, search_txt
+    global query_field, go_btn, rst_btn, search_txt, combo, topspace, date1, date1text, date2, date2text
+
 
     search_txt = tk.Label(window, text="Search:", background='#edf0f5', font=('Open Sans', 12))   
     query_field = tk.Text(window, height=1, width=40, font=('Open Sans', 12))
+    topspace = tk.Label(window, text="", background='#edf0f5')
     go_btn = tk.Button(window, text="Go!", width=8, command=start_new_query, font=('Open Sans', 11))
     rst_btn = tk.Button(window, text="Reset", width=8, command=reset_query_field, font=('Open Sans', 11))
+
+    combo = ttk.Combobox(window, values=[""])
+
+    date1 = tk.Text(window, height=1, width=5, font=('Open Sans', 12))
+    date2 = tk.Text(window, height=1, width=5, font=('Open Sans', 12))
+
+    date1text = tk.Label(window, text="Start Date:", background='#edf0f5', font=('Open Sans', 12))
+    date2text = tk.Label(window, text="End Date:", background='#edf0f5', font=('Open Sans', 12))
+
     
-    # search_txt.grid(row=0, column=0, sticky='W', padx=5, pady=5)
-    # query_field.grid(row=0, sticky='W', padx=65, pady=5)
-    # go_btn.grid(row=0, column=0, sticky='W', padx=450, pady=5)
-    # rst_btn.grid(row=0, column=0, sticky='W', padx=540, pady=5)
     
     
     global radio_value 
     radio_value = tk.StringVar(value=1)       # radio_value contains the value corresponding to the selected radio button. It's needed in order to tell the selected button.
     
     tk.Label(window, text="\nSelect your query:", background='#edf0f5', font=('Open Sans', 13)).grid(row=1, column=0, sticky='W', padx=35, pady=5)
-    
-    global radio1, radio2, radio3, radio4, radio5, radio6, radio7, radio8, radio9
 
     radio1 = tk.Radiobutton(window, variable = radio_value, text = "View All", value = "1", background='#edf0f5', font=('Open Sans', 11), command=draw_searchbox)
     radio2 = tk.Radiobutton(window, variable = radio_value, text = "View By Country", value = "2", background='#edf0f5', font=('Open Sans', 11), command=draw_searchbox)
@@ -123,6 +128,7 @@ def create_db_window():
     style.configure("Treeview.Heading", font=('Open Sans', 11))
     style.configure("Treeview", font=('Open Sans', 11))
 
+
     tree.heading('0',  text = '#')
     tree.heading('1',  text = 'ID')
     tree.heading('2',  text = 'Name')
@@ -156,17 +162,16 @@ def create_db_window():
     
     # The data table will contain all entries by default in order to show the database contents
     view_all()
-
-    global combo 
-    combo = ttk.Combobox(window, values=[""])
-
-    
-
-
+    add_topspacing()
 
     # Add paging buttons and text
-    tk.Button(window, text="Show Previous", command=prev_btn, font=('Open Sans', 11)).grid(row=9, column=0, padx=110, pady=10, sticky='W')
-    tk.Button(window, text="Show Next", command=next_btn, font=('Open Sans', 11)).grid(row=9, column=0, padx=110, pady=10, sticky='E')
+    global prevbutton, nextbutton
+
+    prevbutton = tk.Button(window, text="Show Previous", command=prev_btn, font=('Open Sans', 11))
+    nextbutton = tk.Button(window, text="Show Next", command=next_btn, font=('Open Sans', 11))
+
+    prevbutton.grid(row=9, column=0, padx=110, pady=10, sticky='W')
+    nextbutton.grid(row=9, column=0, padx=110, pady=10, sticky='E')
     
     
     global entries_label
@@ -175,7 +180,11 @@ def create_db_window():
 
 
     window.configure(background='#edf0f5')
+    window.resizable(0,0)
+
     window.mainloop()
+
+
 
 
 
@@ -183,7 +192,7 @@ def create_db_window():
 def draw_searchbox():
     """ Command for the radio buttons. Used to draw a search text field or a combobox containing search parameters"""
 
-    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index
+    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index, date1, date2, date1text, date2text
     
     # Reset paging values
     skipvalue, row_index = 0, 1
@@ -195,18 +204,35 @@ def draw_searchbox():
     search_txt.grid_forget()
     go_btn.grid_forget()
     rst_btn.grid_forget()
+    date1.grid_forget()
+    date2.grid_forget()
+    date1text.grid_forget()
+    date2text.grid_forget()
 
     # Get the value of the radio button to process the requested query
     query_type = radio_value.get()
 
+    # If needed, check and change the table headings to show the query results properly
+    edit_table(query_type)
+
+    # Clear previous table contents
+    if len(tree.get_children()) > 0:
+        tree.delete(*tree.get_children())
+
+    # Check the requested query
     # view all
     if(query_type == '1'):
         start_new_query()
+        add_topspacing()
 
     # view by country
     if(query_type == '2'):
         showcombo(collection.distinct("Country"))
-        
+    
+    #view by name
+    if(query_type == '3'):
+        showsearchfield()
+
     # view by state    
     if(query_type == '4'):
         showcombo(collection.distinct("State"))
@@ -219,17 +245,87 @@ def draw_searchbox():
     if(query_type == '6'):
         showcombo(collection.distinct("Sub Category"))
 
-    # view by name, deadline range, launched range
-    if(query_type in ('3','7','8')):
-        showsearchfield()
+    # deadline range, launched range
+    if(query_type in ('7','8')):
+        show_datefields()
+        
+        #if query_type in ('7','8'):
+        #   query_field.insert("1.0","Example: 2010-2012")
 
     # count by country
     if(query_type == '9'):
         count_by_country()
+        add_topspacing()
+
+
+def edit_table(query_type):
+    """ Edit the treeview in order to show the proper table for the selected query"""
+
+    global nextbutton, prevbutton, tree
+
+    if query_type in ('1','2','3','4','5','6','7','8'):
+
+        tree.grid_forget()
+
+        tree.configure(columns=('0','1','2','3','4','5','6','7','8','9','10','11','12'))
+
+        tree.heading('0',  text = '#')
+        tree.heading('1',  text = 'ID')
+        tree.heading('2',  text = 'Name')
+        tree.heading('3',  text = 'Main Category')
+        tree.heading('4',  text = 'Category')
+        tree.heading('5',  text = 'Currency')
+        tree.heading('6',  text = 'Deadline')
+        tree.heading('7',  text = 'Goal')
+        tree.heading('8',  text = 'Launched')
+        tree.heading('9',  text = 'Pledged')
+        tree.heading('10', text = 'State')
+        tree.heading('11', text = 'Backers')
+        tree.heading('12', text = 'Country')
+
+
+        tree.column('0',  minwidth=60,  width=60,  stretch=NO) 
+        tree.column('1',  minwidth=100, width=100, stretch=NO)
+        tree.column('2',  minwidth=80,  width=125, stretch=NO)
+        tree.column('3',  minwidth=80,  width=125, stretch=NO)
+        tree.column('4',  minwidth=80,  width=125, stretch=NO)
+        tree.column('5',  minwidth=70,  width=70,  stretch=NO)
+        tree.column('6',  minwidth=70,  width=70,  stretch=NO)
+        tree.column('7',  minwidth=80,  width=80,  stretch=NO)
+        tree.column('8',  minwidth=90,  width=90,  stretch=NO)
+        tree.column('9',  minwidth=90,  width=90,  stretch=NO)
+        tree.column('10', minwidth=80,  width=80,  stretch=NO)
+        tree.column('11', minwidth=70,  width=70,  stretch=NO)
+        tree.column('12', minwidth=60,  width=60,  stretch=NO)
+        
+        tree.grid(row=7, column=0, padx=10, pady=10)
+        prevbutton.grid(row=9, column=0, padx=110, pady=10, sticky='W')
+        nextbutton.grid(row=9, column=0, padx=110, pady=10, sticky='E')
+    
+    
+    if query_type == '9':
+        
+        tree.grid_forget()
+        tree.grid(row=7, column=0, padx=10, pady=10)
+
+        tree.configure(columns=('0','1','2'))
+        tree.heading('0', text='#')
+        tree.heading('1', text='Country')
+        tree.heading('2', text='Number of projects')
+        
+        
+        tree.column('0',  minwidth=60,  width=60,  stretch=NO) 
+        tree.column('1',  minwidth=100, width=100, stretch=NO)
+        tree.column('2',  minwidth=140, width=140, stretch=NO)
+
+        nextbutton.grid_forget()
+        prevbutton.grid_forget()
+
 
 
 
 def count_by_country():
+    """ Executes a query which counts the number of projects for each country in the database"""
     
     search_label.configure(text="Number of projects by country:")
     entries_label.configure(text="")
@@ -255,7 +351,33 @@ def count_by_country():
     print_to_table(projects)
 
 
+def add_topspacing():
+    """ Adds a white blank space on top of the window in order to avoid flickering"""
+    global topspace
+    topspace.grid(row=0, column=0, sticky='W', padx=35, pady=(40,0))
+
+
+def show_datefields():
+    """ Shows the proper texts and fields needed to execute date-based queries"""
+    global date1, date2, date1text, date2text, go_btn, rst_btn
+
+    date1.delete("1.0", "end-1c")
+    date2.delete("1.0", "end-1c")
+
+
+    date1text.grid(row=0, column=0, sticky='W', padx=(5,0), pady=(5,0))
+    date1.grid(row=0, column=0, sticky='W', padx=90, pady=(5,0))
+
+    date2text.grid(row=0, column=0, sticky='W', padx=150, pady=(5,0))
+    date2.grid(row=0, column=0, sticky='W', padx=230, pady=(5,0))
+
+    go_btn.grid(row=0, column=0, sticky='W', padx=350, pady=5)
+    rst_btn.grid(row=0, column=0, sticky='W', padx=440, pady=5)
+
+
+
 def showcombo(boxvalues):
+    """Adds a combobox and its related buttons on top of the window"""
     global search_txt, query_field, go_btn, rst_btn
 
     search_txt.grid(row=0, column=0, sticky='W', padx=5, pady=5)
@@ -267,10 +389,8 @@ def showcombo(boxvalues):
     combo.grid(row=0, sticky='W', padx=65, pady=5)
 
 
-
-
 def showsearchfield():
-
+    """Adds a search field and its related buttons on top of the window"""
     global search_txt, query_field, go_btn, rst_btn
 
     search_txt.grid(row=0, column=0, sticky='W', padx=5, pady=5)
@@ -279,6 +399,9 @@ def showsearchfield():
 
     go_btn.grid(row=0, column=0, sticky='W', padx=450, pady=5)
     rst_btn.grid(row=0, column=0, sticky='W', padx=540, pady=5)
+
+
+
 
 
 def next_btn():
@@ -362,6 +485,7 @@ def start_query():
             total_entries = collection.count_documents({})
             already_counted = 1
         view_all()
+        edit_entries_labels()
 
     #view by country
     if(query_type == "2"): 
@@ -373,6 +497,7 @@ def start_query():
 
         search_label.configure(text="Results of [View by Country] with value ["+combo.get()+"]")
         print_to_table(projects)
+        edit_entries_labels()
 
     #view by name
     if(query_type == "3"): 
@@ -385,6 +510,7 @@ def start_query():
 
         search_label.configure(text="Results of [View by Name] with value ["+query_field.get("1.0", "end-1c")+"]")
         print_to_table(projects)
+        edit_entries_labels()
 
     #view by state
     if(query_type == "4"):
@@ -397,6 +523,7 @@ def start_query():
 
         search_label.configure(text="Results of [View by State] with value ["+combo.get()+"]")
         print_to_table(projects)
+        edit_entries_labels()
 
     #view by main category
     if(query_type == "5"):
@@ -409,6 +536,7 @@ def start_query():
 
         search_label.configure(text="Results of [View by Main Category] with value ["+combo.get()+"]")
         print_to_table(projects)
+        edit_entries_labels()
 
     #view by sub-category
     if(query_type == "6"):
@@ -421,33 +549,42 @@ def start_query():
         
         search_label.configure(text="Results of [View by Sub-Category] with value ["+combo.get()+"]")
         print_to_table(projects)
+        edit_entries_labels()
 
     #by deadline
     if(query_type == "7"):
-        deadlinestring = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
-        i = deadlinestring.find("-")
+ 
+        min_year = int(date1.get("1.0", "end-1c"))
+        max_year = int(date2.get("1.0", "end-1c"))
 
-        if(i!=-1): 
-            min_year = int(deadlinestring[0:i])
-            max_year = int(deadlinestring[i+1:len(deadlinestring)])
+        projects = collection.find({"Deadline":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = 20).sort("Deadline", pymongo.ASCENDING)
+        
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Deadline":{"$gte":min_year, "$lte":max_year}})
+            already_counted = 1
 
-            projects = collection.find({"Launched":{"$gte":min_year, "$lte":max_year}}).sort("Launched", pymongo.ASCENDING)
-            
-            if already_counted == 0:
-                total_entries = collection.count_documents({"Launched":{"$gte":min_year, "$lte":max_year}})
-                already_counted = 1
-
-            search_label.configure(text="Results of [View by deadline] with value ["+query_field.get("1.0", "end-1c")+"]")
-            print_to_table(projects)
-
-
+        search_label.configure(text="Results of [View by deadline date] with value ["+str(min_year)+"-"+str(max_year)+"]")
+        print_to_table(projects)
+        edit_entries_labels()
 
     #launched
     if(query_type == "8"):
-        pass
+
+        min_year = int(date1.get("1.0", "end-1c"))
+        max_year = int(date2.get("1.0", "end-1c"))
+
+        projects = collection.find({"Launched":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = 20).sort("Launched", pymongo.ASCENDING)
         
-    #Modify the entries label under the content table
-    edit_entries_labels()
+        if already_counted == 0:
+            total_entries = collection.count_documents({"Launched":{"$gte":min_year, "$lte":max_year}})
+            already_counted = 1
+
+        search_label.configure(text="Results of [View by launched date] with value ["+str(min_year)+"-"+str(max_year)+"]")
+        print_to_table(projects)
+        edit_entries_labels()
+    
+    
+
 
 
 def edit_entries_labels():
@@ -464,10 +601,13 @@ def edit_entries_labels():
     
 
 def reset_query_field():
-    """Wrapper of the delete function, used to delete the entire query-text field"""
+    """Wrapper of the delete function, used to delete the all query fields"""
     
     query_field.delete("1.0", "end-1c")
     combo.set("")
+    date1.delete("1.0", "end-1c")
+    date2.delete("1.0", "end-1c")
+
     item_count = len(tree.get_children())
 
     entries_label.configure(text="")
@@ -498,6 +638,7 @@ class App:
 
 window = tk.Tk(className="login")
 window.geometry("300x300")
+window.resizable(0,0)
 window.eval('tk::PlaceWindow . center')
 
 usr_label = tk.Label(window, text = "Username: ", background = '#edf0f5', font=('Open Sans', 13))

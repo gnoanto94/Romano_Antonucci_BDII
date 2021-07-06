@@ -4,7 +4,7 @@ import traceback
 
 from re import T
 from tkinter import ttk
-from tkinter.messagebox import NO, askyesno, showerror
+from tkinter.messagebox import NO, showerror
 from pymongo.mongo_client import MongoClient
 from pymongo.errors import ConnectionFailure
 
@@ -63,7 +63,7 @@ def create_db_window():
 
     # Add text field and buttons for the queries
 
-    global query_field, go_btn, rst_btn, search_txt, combo, topspace, date1, date1text, date2, date2text
+    global query_field, go_btn, rst_btn, search_txt, combo, topspace, date1, date1text, date2, date2text, scrollbar
 
 
     search_txt = tk.Label(window, text="Search:", background='#edf0f5', font=('Open Sans', 12))   
@@ -79,12 +79,9 @@ def create_db_window():
 
     date1text = tk.Label(window, text="Start Date:", background='#edf0f5', font=('Open Sans', 12))
     date2text = tk.Label(window, text="End Date:", background='#edf0f5', font=('Open Sans', 12))
-
-    
-    
     
     global radio_value 
-    radio_value = tk.StringVar(value=1)       # radio_value contains the value corresponding to the selected radio button. It's needed in order to tell the selected button.
+    radio_value = tk.StringVar(value=1) # radio_value contains the value corresponding to the selected radio button. It's needed in order to tell the selected button.
     
     tk.Label(window, text="\nSelect your query:", background='#edf0f5', font=('Open Sans', 13)).grid(row=1, column=0, sticky='W', padx=35, pady=5)
 
@@ -118,12 +115,11 @@ def create_db_window():
     search_label.grid(row=6, column=0, pady=5)
 
 
-    # Add the data table
+    # Add the data table 
 
     global tree
     tree = ttk.Treeview(window, selectmode="extended", columns=('0','1', '2', '3','4','5','6','7','8','9','10','11','12'), show='headings', height=20)
-
-
+    
     style = ttk.Style()
     style.configure("Treeview.Heading", font=('Open Sans', 11))
     style.configure("Treeview", font=('Open Sans', 11))
@@ -158,7 +154,13 @@ def create_db_window():
     tree.column('11', minwidth=70,  width=70,  stretch=NO)
     tree.column('12', minwidth=60,  width=60,  stretch=NO)
     
-    tree.grid(row=7, column=0, padx=10, pady=10)
+    tree.grid(row=7, column=0, padx=10, pady=(10,0))
+
+    
+    # Add horizontal scrollbar
+    scrollbar = ttk.Scrollbar(window,orient=tk.HORIZONTAL, command=tree.xview)
+    tree.configure(xscroll=scrollbar.set)
+    scrollbar.grid(row=8, column=0, sticky='new', padx=110)
     
     # The data table will contain all entries by default in order to show the database contents
     view_all()
@@ -192,7 +194,7 @@ def create_db_window():
 def draw_searchbox():
     """ Command for the radio buttons. Used to draw a search text field or a combobox containing search parameters"""
 
-    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index, date1, date2, date1text, date2text
+    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index, date1, date2, date1text, date2text, scrollbar
     
     # Reset paging values
     skipvalue, row_index = 0, 1
@@ -208,6 +210,7 @@ def draw_searchbox():
     date2.grid_forget()
     date1text.grid_forget()
     date2text.grid_forget()
+    
 
     # Get the value of the radio button to process the requested query
     query_type = radio_value.get()
@@ -261,7 +264,7 @@ def draw_searchbox():
 def edit_table(query_type):
     """ Edit the treeview in order to show the proper table for the selected query"""
 
-    global nextbutton, prevbutton, tree
+    global nextbutton, prevbutton, tree, scrollbar
 
     if query_type in ('1','2','3','4','5','6','7','8'):
 
@@ -297,8 +300,17 @@ def edit_table(query_type):
         tree.column('10', minwidth=80,  width=80,  stretch=NO)
         tree.column('11', minwidth=70,  width=70,  stretch=NO)
         tree.column('12', minwidth=60,  width=60,  stretch=NO)
+
         
         tree.grid(row=7, column=0, padx=10, pady=10)
+
+    
+        # Add horizontal scrollbar
+
+        tree.configure(xscroll=scrollbar.set)
+        scrollbar.grid(row=8, column=0, sticky='new', padx=110)
+        
+        # Add paging buttons    
         prevbutton.grid(row=9, column=0, padx=110, pady=10, sticky='W')
         nextbutton.grid(row=9, column=0, padx=110, pady=10, sticky='E')
     
@@ -306,6 +318,8 @@ def edit_table(query_type):
     if query_type == '9':
         
         tree.grid_forget()
+        scrollbar.grid_forget()
+        
         tree.grid(row=7, column=0, padx=10, pady=10)
 
         tree.configure(columns=('0','1','2'))

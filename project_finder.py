@@ -11,6 +11,7 @@ from pymongo.errors import ConnectionFailure
 
 
 DEBUG = False
+LIMIT_VALUE = 20
  
 skipvalue, row_index, total_entries = 0, 1, 0
 already_counted = 0 # flag to count the total number of entries for a given query
@@ -446,7 +447,7 @@ def view_all():
             total_entries = collection.count_documents({})
             already_counted = 1
         
-    print_to_table(collection.find({}, skip=skipvalue, limit=20).sort("Name", pymongo.ASCENDING))
+    print_to_table(collection.find({}, skip=skipvalue, limit = LIMIT_VALUE).sort("Name", pymongo.ASCENDING))
 
 
 
@@ -504,7 +505,7 @@ def start_query():
     #view by country
     if(query_type == "2"): 
         country = combo.get()
-        projects = collection.find({"Country":country}, skip = skipvalue, limit=20)
+        projects = collection.find({"Country":country}, skip = skipvalue, limit = LIMIT_VALUE)
         if already_counted == 0:
             total_entries = collection.count_documents({"Country":country})
             already_counted = 1
@@ -516,10 +517,12 @@ def start_query():
     #view by name
     if(query_type == "3"): 
         name = query_field.get("1.0", "end-1c") #prende dal primo al penultimo carattere, altrimenti considera anche newline
-        projects = collection.find({"Name":name}, skip = skipvalue, limit = 20)
-        projects = collection.find({"Name":{"$regex":name}}, skip = skipvalue, limit = 20)
+        #projects = collection.find({"Name":name}, skip = skipvalue, limit = LIMIT_VALUE)
+        #projects = collection.find({"Name":{"$regex":name}}, skip = skipvalue, limit = LIMIT_VALUE)
+        projects = collection.find({"$text":{"$search":"\""+name+"\""}}, skip = skipvalue, limit = LIMIT_VALUE)
         if already_counted == 0:
-            total_entries = collection.count_documents({"Name":{"$regex":name}})
+            #total_entries = collection.count_documents({"Name":{"$regex":name}})
+            total_entries = collection.count_documents({"$text":{"$search":"\""+name+"\""}})
             already_counted = 1
 
         search_label.configure(text="Results of [View by Name] with value ["+query_field.get("1.0", "end-1c")+"]")
@@ -529,7 +532,7 @@ def start_query():
     #view by state
     if(query_type == "4"):
         state = combo.get()
-        projects = collection.find({"State":state}, skip = skipvalue, limit = 20)
+        projects = collection.find({"State":state}, skip = skipvalue, limit = LIMIT_VALUE)
         
         if already_counted == 0:
             total_entries = collection.count_documents({"State":state})
@@ -542,7 +545,7 @@ def start_query():
     #view by main category
     if(query_type == "5"):
         category = combo.get()
-        projects = collection.find({"Main Category":category}, skip = skipvalue, limit = 20)
+        projects = collection.find({"Main Category":category}, skip = skipvalue, limit = LIMIT_VALUE)
        
         if already_counted == 0:
             total_entries = collection.count_documents({"Main Category":category})
@@ -555,7 +558,7 @@ def start_query():
     #view by sub-category
     if(query_type == "6"):
         category = combo.get()
-        projects = collection.find({"Sub Category":category}, skip = skipvalue, limit = 20)
+        projects = collection.find({"Sub Category":category}, skip = skipvalue, limit = LIMIT_VALUE)
         
         if already_counted == 0:
             total_entries = collection.count_documents({"Sub Category":category})
@@ -571,7 +574,7 @@ def start_query():
         min_year = int(date1.get("1.0", "end-1c"))
         max_year = int(date2.get("1.0", "end-1c"))
 
-        projects = collection.find({"Deadline":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = 20).sort("Deadline", pymongo.ASCENDING)
+        projects = collection.find({"Deadline":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = LIMIT_VALUE).sort("Deadline", pymongo.ASCENDING)
         
         if already_counted == 0:
             total_entries = collection.count_documents({"Deadline":{"$gte":min_year, "$lte":max_year}})
@@ -587,7 +590,7 @@ def start_query():
         min_year = int(date1.get("1.0", "end-1c"))
         max_year = int(date2.get("1.0", "end-1c"))
 
-        projects = collection.find({"Launched":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = 20).sort("Launched", pymongo.ASCENDING)
+        projects = collection.find({"Launched":{"$gte":min_year, "$lte":max_year}}, skip = skipvalue, limit = LIMIT_VALUE).sort("Launched", pymongo.ASCENDING)
         
         if already_counted == 0:
             total_entries = collection.count_documents({"Launched":{"$gte":min_year, "$lte":max_year}})

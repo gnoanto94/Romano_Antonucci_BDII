@@ -422,19 +422,36 @@ def showsearchfield():
 def next_btn():
     """ Command for the next button. Shows 20 next entries"""
     global skipvalue
-    skipvalue += 20
-    start_query()
+    
+    if (skipvalue + LIMIT_VALUE) < total_entries:
+        skipvalue += LIMIT_VALUE
+        start_query()
+
+    print("SkipValue in next: " + str(skipvalue))
+    #altrimenti non aggiorno il valore di skipvalue 
+    #skipvalue += 20
+    
 
 
 
 def prev_btn():
     """ Command for the previous button. Shows 20 previous entries"""
     global skipvalue, row_index
+    resto = total_entries % LIMIT_VALUE
     
-    if skipvalue >= 20:
+    #caso dell'ultima pagina 
+    if skipvalue + LIMIT_VALUE > total_entries: #stiamo visualizzando l'ultima pagina
+        skipvalue -= LIMIT_VALUE
+        row_index -= LIMIT_VALUE + resto
+    else: #mi trovo in un'altra qualsiasi pagina 
+        if skipvalue >= LIMIT_VALUE:
+            skipvalue -= LIMIT_VALUE
+            row_index -= LIMIT_VALUE*2 
+
+    """if skipvalue >= 20:
         skipvalue -=20
-        row_index -=40
-        start_query()
+        row_index -=40"""
+    start_query()
 
 
 def view_all():

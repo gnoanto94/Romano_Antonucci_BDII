@@ -13,7 +13,7 @@ from pymongo.errors import ConnectionFailure
 DEBUG = False
 LIMIT_VALUE = 20
  
-skipvalue, row_index, total_entries = 0, 1, 0
+skipvalue, row_index, total_entries, preparing_query = 0, 1, 0, 0
 already_counted = 0 # flag to count the total number of entries for a given query
 
 
@@ -195,10 +195,13 @@ def create_db_window():
 def draw_searchbox():
     """ Command for the radio buttons. Used to draw a search text field or a combobox containing search parameters"""
 
-    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index, date1, date2, date1text, date2text, scrollbar
+    global combo, search_txt, rst_btn, go_btn, radio_value, skipvalue, row_index, date1, date2, date1text, date2text, scrollbar, preparing_query
     
     # Reset paging values
     skipvalue, row_index = 0, 1
+
+    # Prepare for a query -> block next and prev buttons
+    preparing_query = 1
 
 
     # Clear any previous searchbox and its related buttons
@@ -420,38 +423,41 @@ def showsearchfield():
 
 
 def next_btn():
-    """ Command for the next button. Shows 20 next entries"""
-    global skipvalue
+    """ Command for the next button. Shows up to 20 next entries"""
+    global skipvalue, preparing_query
     
-    if (skipvalue + LIMIT_VALUE) < total_entries:
-        skipvalue += LIMIT_VALUE
-        start_query()
+    if preparing_query != 1:
 
-    print("SkipValue in next: " + str(skipvalue))
-    #altrimenti non aggiorno il valore di skipvalue 
-    #skipvalue += 20
+        if (skipvalue + LIMIT_VALUE) < total_entries:
+            skipvalue += LIMIT_VALUE
+            start_query()
+
+        if DEBUG: print("SkipValue in next: " + str(skipvalue))
+        #altrimenti non aggiorno il valore di skipvalue 
+        #skipvalue += 20
     
 
 
 
 def prev_btn():
-    """ Command for the previous button. Shows 20 previous entries"""
-    global skipvalue, row_index
-    resto = total_entries % LIMIT_VALUE
+    """ Command for the previous button. Shows up to 20 previous entries"""
+    global skipvalue, row_index, preparing_query
     
-    #caso dell'ultima pagina 
-    if skipvalue + LIMIT_VALUE > total_entries: #stiamo visualizzando l'ultima pagina
-        skipvalue -= LIMIT_VALUE
-        row_index -= LIMIT_VALUE + resto
-    else: #mi trovo in un'altra qualsiasi pagina 
-        if skipvalue >= LIMIT_VALUE:
-            skipvalue -= LIMIT_VALUE
-            row_index -= LIMIT_VALUE*2 
+    if preparing_query != 1:
 
-    """if skipvalue >= 20:
-        skipvalue -=20
-        row_index -=40"""
-    start_query()
+        resto = total_entries % LIMIT_VALUE
+        
+        #caso dell'ultima pagina 
+        if skipvalue + LIMIT_VALUE > total_entries: #stiamo visualizzando l'ultima pagina
+            skipvalue -= LIMIT_VALUE
+            row_index -= LIMIT_VALUE + resto
+            start_query()
+
+        else: #mi trovo in un'altra qualsiasi pagina 
+            if skipvalue >= LIMIT_VALUE:
+                skipvalue -= LIMIT_VALUE
+                row_index -= LIMIT_VALUE*2 
+                start_query()
 
 
 def view_all():
@@ -492,8 +498,8 @@ def print_to_table(projects):
 
 def start_new_query():
     """ Resets all indexes and skips, an then start a query. Used as the command for the GO! Button"""
-    global skipvalue, row_index, entries_label, already_counted
-    already_counted, skipvalue, row_index = 0, 0, 1
+    global skipvalue, row_index, entries_label, already_counted, preparing_query
+    already_counted, skipvalue, preparing_query, row_index = 0, 0, 0, 1
     start_query()
 
 

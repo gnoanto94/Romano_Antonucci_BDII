@@ -12,6 +12,7 @@ from pymongo.errors import ConnectionFailure
 
 DEBUG = False
 LIMIT_VALUE = 20
+COMBO_MESSAGE = "Choose a value..."
  
 skipvalue, row_index, total_entries, preparing_query = 0, 1, 0, 0
 already_counted = 0 # flag to count the total number of entries for a given query
@@ -405,17 +406,17 @@ def showcombo(boxvalues):
     go_btn.grid(row=0, column=0, sticky='W', padx=450, pady=5)
     rst_btn.grid(row=0, column=0, sticky='W', padx=540, pady=5)
     
-    combo.set("")
+    combo.set(COMBO_MESSAGE)
     combo.configure(values=boxvalues, font=('Open Sans', 12), width=40)
     combo['state'] = 'readonly' #per evitare inserimenti liberi da parte dell'utente
-    combo.current(0) #per non mostrare la combo vuota all'inizio (prende il primo valore come default)
+    #combo.current(0) #per non mostrare la combo vuota all'inizio (prende il primo valore come default)
     combo.grid(row=0, sticky='W', padx=65, pady=5)
 
     combo.bind("<<ComboboxSelected>>", callBackFunc)
 
 def callBackFunc(event):
     start_new_query()
-    
+
 def showsearchfield():
     """Adds a search field and its related buttons on top of the window"""
     global search_txt, query_field, go_btn, rst_btn
@@ -653,7 +654,7 @@ def reset_query_field():
     """Wrapper of the delete function, used to delete the all query fields"""
     
     query_field.delete("1.0", "end-1c")
-    combo.set("")
+    combo.set(COMBO_MESSAGE)
     date1.delete("1.0", "end-1c")
     date2.delete("1.0", "end-1c")
 

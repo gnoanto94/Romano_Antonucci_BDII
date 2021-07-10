@@ -398,15 +398,24 @@ def showcombo(boxvalues):
     """Adds a combobox and its related buttons on top of the window"""
     global search_txt, query_field, go_btn, rst_btn
 
+    #ordina i valori della lista
+    boxvalues.sort()
+
     search_txt.grid(row=0, column=0, sticky='W', padx=5, pady=5)
     go_btn.grid(row=0, column=0, sticky='W', padx=450, pady=5)
     rst_btn.grid(row=0, column=0, sticky='W', padx=540, pady=5)
     
     combo.set("")
     combo.configure(values=boxvalues, font=('Open Sans', 12), width=40)
+    combo['state'] = 'readonly' #per evitare inserimenti liberi da parte dell'utente
+    combo.current(0) #per non mostrare la combo vuota all'inizio (prende il primo valore come default)
     combo.grid(row=0, sticky='W', padx=65, pady=5)
 
+    combo.bind("<<ComboboxSelected>>", callBackFunc)
 
+def callBackFunc(event):
+    start_new_query()
+    
 def showsearchfield():
     """Adds a search field and its related buttons on top of the window"""
     global search_txt, query_field, go_btn, rst_btn

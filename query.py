@@ -148,6 +148,7 @@ def num_of_projects_launched_in_year():
 #restituisce una lista
 def state_values():
     values = collection.distinct("State")
+    values.sort()
     if DEBUG: print(values)
     return values
 
@@ -167,5 +168,5 @@ def sub_category_values():
 def close_connection():
     client.close()
 
-num_of_projects_in_country("IT")
+state_values()
 close_connection()

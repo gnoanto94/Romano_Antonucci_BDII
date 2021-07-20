@@ -16,8 +16,7 @@ collection = db.data
 collection.drop() #ripulisce la collection prima di aggiungere i dati
 
 #CSV to JSON Conversion 
-csvfile1 = open('dataset/2016.csv', 'r') 
-csvfile2 = open('dataset/ks-projects-201801modificato.csv', 'r')
+csvfile = open('dataset/2016.csv', 'r') 
 records = []
 
 def parse(csvfile):
@@ -47,7 +46,6 @@ def parse(csvfile):
         state = each["state"]
         backers = each["backers"]
         country = each["country"]
-        #usd_pledged = float(each["usd pledged"])
 
         date_format_deadline = '%m/%d/%Y %H:%M' #'%Y-%m-%d %H:%M:%S'
         date_format_launched = '%d/%m/%Y %H:%M'
@@ -86,13 +84,9 @@ def parse(csvfile):
                 }
         
         records.append(record)
-        #pprint.pprint(records)
-        #collection.insert_one(record) #inserimento nel db un record alla volta (più chiamate al server)
 
-parse(csvfile1)
-#parse(csvfile2)
+parse(csvfile)
 
-#pprint.pprint(records)
 collection.insert_many(records) #inserimento nel db di tutti i record (una sola chiamata al server)
 print("HO FINITO")
 client.close()

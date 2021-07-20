@@ -6,6 +6,12 @@ import csv
 import datetime
 
 from pymongo import MongoClient
+
+'''
+Il file .csv del dataset non è presente nella consegna a causa di problemi con le dimensioni eccessive rispetto al limite.
+E' stato inserito (all'interno dell'archivio) un link al dataset originale sulla piattaforma kaggle.com
+'''
+
 client = MongoClient()
 
 #admin:oNWZDGjCxDHtnp8o

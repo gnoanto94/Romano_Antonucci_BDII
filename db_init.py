@@ -13,9 +13,8 @@ E' stato inserito (all'interno dell'archivio) un link al dataset originale sulla
 '''
 
 client = MongoClient()
-
-#admin:oNWZDGjCxDHtnp8o
-client = pymongo.MongoClient("mongodb+srv://admin:oNWZDGjCxDHtnp8o@cluster0.bkvuu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+mongoURI = "" #hidden
+client = pymongo.MongoClient(mongoURI)
 print("Info: "+str(client))
 db = client.ksprojects
 collection = db.data
